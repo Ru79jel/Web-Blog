@@ -36,7 +36,7 @@ public class WebController {
 
     @GetMapping("/{postId}/comments")
     public String showComments(@PathVariable long postId, Model model) {
-        model.addAttribute("comments", this.webService.getCommentRepo().findAll());
+        model.addAttribute("comments", this.webService.getCommentRepo().findByBlogPostPostID(postId));
         model.addAttribute("newcomment", new BlogComment());
         BlogPost blogPost = this.webService.getPostRepo().findById(postId).get();
         model.addAttribute("post", blogPost);
@@ -45,10 +45,11 @@ public class WebController {
 
     @PostMapping("/{postId}/comments")
     public String newComment(@ModelAttribute BlogComment comment, @PathVariable long postId, Model model) {
-        this.webService.getCommentRepo().save(comment);
         BlogPost blogPost = this.webService.getPostRepo().findById(postId).get();
+        comment.setBlogPost(blogPost);
+        this.webService.getCommentRepo().save(comment);
         model.addAttribute("post", blogPost);
-        model.addAttribute("comments", this.webService.getCommentRepo().findAll());
+        model.addAttribute("comments", this.webService.getCommentRepo().findByBlogPostPostID(postId));
         model.addAttribute("newcomment", new BlogComment());
         return "viewcomments";
     }
