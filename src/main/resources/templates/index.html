@@ -10,10 +10,10 @@
         <h1>Beard Heaven</h1>
         <hr/>
 
-    <form th:action="@{/}" th:object="${posts}" method="post" >
+    <form th:action="@{/}" th:object="${newpost}" method="post" >
         <p>Titel: <input type="text" th:field="*{title}" value="Titel"/></p>
         <label>Post:
-            <input type="text" name="name" size="20" th:value="${newpost}" />
+            <input type="text" name="name" size="20" th:field="*{message}" />
             <p><input type="submit" value="save"></p>
         </label>
 

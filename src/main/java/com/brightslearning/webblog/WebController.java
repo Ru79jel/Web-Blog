@@ -35,9 +35,10 @@ public class WebController {
     }
 
     @GetMapping("/{id}/comments")
-    public String showComments(Model model) {
-        model.addAttribute("posts", this.webService.getCommentRepo().findAll());
-        model.addAttribute("newpost", new BlogComment());
+    public String showComments(@PathVariable long id, Model model) {
+        model.addAttribute("comments", this.webService.getCommentRepo().findAll());
+        model.addAttribute("newcomment", new BlogComment());
+        model.addAttribute("post", this.webService.getPostRepo().findById(id));
         return "viewcomments";
     }
 

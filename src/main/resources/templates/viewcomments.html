@@ -5,23 +5,26 @@
     <title>Comments</title>
 </head>
 <body>
-<a th:href="@{/}"><button>Home</button></a>
+<a th:href="@{/}">
+    <button>Home</button>
+</a>
 <hr>
-    <span th:text="'Created on' + ${post.timestamp}">Created At</span>
-    <p th:text="${post.message}">PostText</p>
+<!--<span th:text="'Created on' + ${post.timestamp}">Created At</span>-->
+<!--<p th:text="${post.message}">PostText</p>-->
 
-    <div th:each="comment : ${comments}">
-        <h2><a th:text="${comment.commentUserName}">
-        </a>
-        </h2>
-        <p th:text="${comment.commentBody}">Kommentare</p>
+<div th:each="comment : ${comments}">
+    <h2><a th:text="${comment.blogUser.userName}">
+    </a>
+    </h2>
+    <p th:text="${comment.content}">Kommentare</p>
 
 
-    </div>
-<form th:action="@{/{id}(id=${post.id})/comments}" method="post" >
+</div>
+<form th:action="@{/{id}(id=${post.id})/comments}" method="post">
     <label>Comment:
         <input type="text" name="name" size="20" th:value="${newcomment}"/>
         <p><input type="submit" value="save"></p>
     </label>
+</form>
 </body>
 </html>

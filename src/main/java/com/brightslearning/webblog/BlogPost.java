@@ -15,6 +15,7 @@ public class BlogPost {
     private long postID;
     private String message;
     private Date timestamp;
+    private String title;
     @ManyToOne
     private BlogUser postOwner;
 
