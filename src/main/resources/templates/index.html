@@ -24,10 +24,14 @@
 
     <div class="post-container">
         <div th:each="post : ${posts}">
-            <h2><a th:href="@{'/posts/' + ${post.postID}}">
+            <h2><a th:href="@{'/' + ${post.postID} + '/comments'}">
+                <h5 th:text="${post.title}">Title</h5>
                 </a>
             </h2>
+            <br>
+
             <span th:text="'Created on' + ${post.timestamp}">Created At</span>
+            <br>
             <p th:text="${post.message}">PostText</p>
 
 
