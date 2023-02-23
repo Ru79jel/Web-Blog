@@ -48,6 +48,7 @@ public class WebController {
         model.addAttribute("post", this.webService.getPostRepo().findById(id));
         model.addAttribute("comments", this.webService.getCommentRepo().findAll());
         model.addAttribute("newcomment", new BlogComment());
+
         return "index";
     }
 
