@@ -17,6 +17,20 @@ public class WebController {
     @Autowired
     public WebController(WebService webService) {
         this.webService = webService;
+        for (int i = 1; i < 25; i++) {
+            BlogUser user = new BlogUser();
+            user.setUserName("User#" + i);
+            this.webService.getUserRepo().save(user);
+        }
+        for (int i = 1; i < 25; i++) {
+            BlogPost post = new BlogPost();
+            post.setMessage(i + ". Message");
+            post.setTitle("Message #" + i);
+            post.setPostOwner(this.webService.getUserRepo().findById(Long.valueOf((int) (Math.random() * (1 - 25) + 25))).get());
+            this.webService.getPostRepo().save(post);
+
+        }
+
     }
 
     @GetMapping("/")

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface PostRepo extends CrudRepository<BlogPost,Long> {
 
-    //List<BlogPost> findByNameStartingWith(String prefix);
+    List<BlogPost> findByOrderByTimestampDesc();
 }
