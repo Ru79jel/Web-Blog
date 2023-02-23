@@ -3,6 +3,8 @@ package com.brightslearning.webblog;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -14,12 +16,16 @@ public class BlogPost {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long postID;
     private String message;
-    private Date timestamp;
+    private LocalDate timestamp;
     private String title;
     @ManyToOne
     private BlogUser postOwner;
 
     @OneToMany(mappedBy = "blogPost")
     private Set<BlogComment> comments;
+
+    public BlogPost() {
+        this.timestamp = LocalDate.now();
+    }
 
 }
