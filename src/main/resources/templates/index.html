@@ -7,13 +7,13 @@
 <body>
 
 <div class="container">
-        <h1>Beard Heaven</h1>
-        <hr/>
+    <h1>Beard Heaven</h1>
+    <hr/>
 
-    <form th:action="@{/}" th:object="${newpost}" method="post" >
+    <form th:action="@{/}" th:object="${newpost}" method="post">
         <p>Titel: <input type="text" th:field="*{title}" value="Titel"/></p>
         <label>Post:
-            <input type="text" name="name" size="20" th:field="*{message}" />
+            <input type="text" name="name" size="20" th:field="*{message}"/>
             <p><input type="submit" value="save"></p>
         </label>
     </form>
@@ -22,18 +22,12 @@
     <div class="post-container">
         <div th:each="post : ${posts}">
             <h2><a th:href="@{'/posts/' + ${post.postID}}">
-                </a>
+            </a>
             </h2>
             <span th:text="'Created on' + ${post.timestamp}">Created At</span>
             <p th:text="${post.message}">PostText</p>
-
-
         </div>
-        </div>
-
-
-
-
+    </div>
 </div>
 </body>
 </html>
