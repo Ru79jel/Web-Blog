@@ -38,17 +38,19 @@ public class WebController {
     public String showComments(@PathVariable long id, Model model) {
         model.addAttribute("comments", this.webService.getCommentRepo().findAll());
         model.addAttribute("newcomment", new BlogComment());
-        model.addAttribute("post", this.webService.getPostRepo().findById(id));
+        BlogPost blogPost = this.webService.getPostRepo().findById(id).get();
+        model.addAttribute("post", blogPost);
         return "viewcomments";
     }
 
     @PostMapping("/{id}/comments")
     public String newComment(@ModelAttribute BlogComment comment, @PathVariable long id, Model model) {
         this.webService.getCommentRepo().save(comment);
-        model.addAttribute("post", this.webService.getPostRepo().findById(id));
+        BlogPost blogPost = this.webService.getPostRepo().findById(id).get();
+        model.addAttribute("post", blogPost);
         model.addAttribute("comments", this.webService.getCommentRepo().findAll());
         model.addAttribute("newcomment", new BlogComment());
-        return "index";
+        return "viewcomments";
     }
 
 }
