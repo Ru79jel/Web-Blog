@@ -20,7 +20,7 @@ public class WebController {
 
     @GetMapping("/")
     public String showBlogBlogPosts(Model model) {
-        model.addAttribute("posts", this.webService.getPostRepo().findAll(Sort.by(Sort.Direction.DESC, "timestamp")));
+        model.addAttribute("posts", this.webService.getPostRepo().findAll());
         model.addAttribute("newpost", new BlogPost());
         return "index";
     }
