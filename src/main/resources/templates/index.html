@@ -8,27 +8,26 @@
 
 <div class="container">
         <h1>Beard Heaven</h1>
-        <hr/>
+        <hr>
 
     <form th:action="@{/}" th:object="${newpost}" method="post" >
-        <p>Titel: <input type="text" th:field="*{title}" value="Titel"/></p>
-        <label>Post:
-            <input type="text" name="name" size="20" th:field="*{message}" />
+        <p><input type="text" th:field="*{title}" value="Titel"/></p>
+        <label>
+            <input type="text" name="name" size="20" th:field="*{message}" value="New Post" />
             <p><input type="submit" value="save"></p>
         </label>
     </form>
+
+    <hr>
 
     <div class="post-container">
         <div th:each="post : ${posts}">
             <h2><a th:href="@{'/' + ${post.postID} + '/comments'}">
                 <h5 th:text="${post.title}">Title</h5>
-                </a>
             </h2>
-            <br>
-
-            <span th:text="'Created on' + ${post.timestamp}">Created At</span>
-            <br>
-            <p th:text="${post.message}">PostText</p>
+            </a>
+            <span th:text="'Created on ' + ${post.timestamp}" >Created At</span>
+            <p th:text="${post.message}">PostText</p> <br>
         </div>
     </div>
 </div>

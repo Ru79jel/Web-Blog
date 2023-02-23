@@ -17,14 +17,15 @@
     <h2>
          <!--<a th:text="${comment.blogUser.userName}">
     </a> -->
-    </h2>
+    </h2><hr>
     <p th:text="${comment.content}">Kommentare</p>
 
-
 </div>
+
+<hr>
 <form th:action="@{/{postId}/comments(postId=${post.postID})}" method="post" th:object="${newcomment}">
-    <label>Comment:
-        <input type="text" name="name" size="20" th:field="*{content}"/>
+    <label>
+        <input type="text" name="name" size="20" th:field="*{content}" value="New Comment"/>
         <p><input type="submit" value="save"></p>
     </label>
 </form>
