@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Beard Heaven</title>
+</head>
+<body>
+
+<div class="container">
+        <h1>Beard Heaven</h1>
+        <hr/>
+
+    <form th:action="@{/}" th:object="${posts}" method="post" >
+        <p>Titel: <input type="text" th:field="*{title}" value="Titel"/></p>
+        <label>Post:
+            <input type="text" name="name" size="20" th:value="${newpost}" />
+            <p><input type="submit" value="save"></p>
+        </label>
+
+
+
+
+    </form>
+
+    <div class="post-container">
+        <div th:each="post : ${posts}">
+            <h2><a th:href="@{'/posts/' + ${post.postID}}">
+                </a>
+            </h2>
+            <span th:text="'Created on' + ${post.timestamp}">Created At</span>
+            <p th:text="${post.message}">PostText</p>
+
+
+        </div>
+        </div>
+
+
+
+
+</div>
+</body>
+</html>
