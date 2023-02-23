@@ -14,6 +14,8 @@ public class BlogUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long userID;
     private String userName;
+    @OneToMany(mappedBy = "postOwner")
+    private Set<BlogPost> blogPosts;
 
     @OneToMany(mappedBy = "blogUser")
     private Set<BlogComment> comments;

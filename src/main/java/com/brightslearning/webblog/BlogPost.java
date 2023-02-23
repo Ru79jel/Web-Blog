@@ -15,6 +15,8 @@ public class BlogPost {
     private long postID;
     private String message;
     private Date timestamp;
+    @ManyToOne
+    private BlogUser postOwner;
 
     @OneToMany(mappedBy = "blogPost")
     private Set<BlogComment> comments;
