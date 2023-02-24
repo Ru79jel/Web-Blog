@@ -48,21 +48,22 @@ public class WebController {
         return "index";
     }
 
-    @GetMapping("/{id}/comments")
-    public String showComments(@PathVariable long id, Model model) {
-        model.addAttribute("comments", this.webService.getCommentRepo().findAll());
+    @GetMapping("/{postId}/comments")
+    public String showComments(@PathVariable long postId, Model model) {
+        model.addAttribute("comments", this.webService.getCommentRepo().findByBlogPostPostID(postId));
         model.addAttribute("newcomment", new BlogComment());
-        BlogPost blogPost = this.webService.getPostRepo().findById(id).get();
+        BlogPost blogPost = this.webService.getPostRepo().findById(postId).get();
         model.addAttribute("post", blogPost);
         return "viewcomments";
     }
 
-    @PostMapping("/{id}/comments")
-    public String newComment(@ModelAttribute BlogComment comment, @PathVariable long id, Model model) {
+    @PostMapping("/{postId}/comments")
+    public String newComment(@ModelAttribute BlogComment comment, @PathVariable long postId, Model model) {
+        BlogPost blogPost = this.webService.getPostRepo().findById(postId).get();
+        comment.setBlogPost(blogPost);
         this.webService.getCommentRepo().save(comment);
-        BlogPost blogPost = this.webService.getPostRepo().findById(id).get();
         model.addAttribute("post", blogPost);
-        model.addAttribute("comments", this.webService.getCommentRepo().findAll());
+        model.addAttribute("comments", this.webService.getCommentRepo().findByBlogPostPostID(postId));
         model.addAttribute("newcomment", new BlogComment());
         return "viewcomments";
     }

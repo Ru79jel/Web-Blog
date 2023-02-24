@@ -1,12 +1,10 @@
 package com.brightslearning.webblog;
 
-import org.attoparser.dom.Comment;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 
+import javax.xml.stream.events.Comment;
 import java.util.List;
 
 public interface CommentRepo extends CrudRepository<BlogComment, Long> {
-
-    List<BlogComment> findByOrderByTimestampAsc();
+   List<BlogComment> findByBlogPostPostID(long postid);
 }
