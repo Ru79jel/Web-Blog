@@ -5,6 +5,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.sql.Struct;
 
 @Controller
 public class WebController {
@@ -71,6 +74,15 @@ public class WebController {
         model.addAttribute("comments", this.webService.getCommentRepo().findByBlogPostPostIDOrderByTimestampAsc(postId));
         model.addAttribute("newcomment", new BlogComment());
         return "viewcomments";
+    }
+
+    @GetMapping("/comments/delete/{id}")
+    public String deleteComment(@ModelAttribute("sessionUser") BlogUser sessionUser, @PathVariable long id) {
+        BlogComment comment = this.webService.getCommentRepo().findById(id).get();
+        if(sessionUser.isAdmin() || sessionUser.equals(comment.getBlogUser())) {
+            this.webService.getCommentRepo().deleteById(id);
+        }
+        return "redirect:" + UriComponentsBuilder.fromPath("/").pathSegment(String.valueOf(comment.getBlogPost().getPostID())).pathSegment("comments").toUriString();
     }
 
 }
