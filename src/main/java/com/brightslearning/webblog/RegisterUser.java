@@ -1,12 +1,13 @@
 package com.brightslearning.webblog;
 
+import lombok.Getter;
 import org.hibernate.annotations.BatchSize;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-
+@Getter
 public class RegisterUser {
 
     @NotEmpty
@@ -21,17 +22,5 @@ public class RegisterUser {
         this.username = username;
         this.password1 = password1;
         this.password2 = password2;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword1() {
-        return password1;
-    }
-
-    public String getPassword2() {
-        return password2;
     }
 }
