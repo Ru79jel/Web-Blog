@@ -18,6 +18,7 @@
          <!--<a th:text="${comment.blogUser.userName}">
     </a> -->
     </h2><hr>
+    <span th:text="'Created on' + ${comment.timestamp}">Created At</span>
     <p th:text="${comment.content}">Kommentare</p>
 
 </div>
