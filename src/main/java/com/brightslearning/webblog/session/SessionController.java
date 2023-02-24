@@ -50,4 +50,16 @@ public class SessionController {
         bindingResult.addError(new FieldError("blogUser", "password", "Login not successful"));
     return "login";
     }
+
+    @PostMapping("/logout")
+    public String logout(@CookieValue(value = "sessionId", defaultValue = "") String sessionId, HttpServletResponse response) {
+        Optional<Session> optionalSession = sessionRepo.findByIdAndExpiresAtAfter(sessionId, Instant.now());
+        optionalSession.ifPresent(session -> sessionRepo.delete(session));
+
+        Cookie cookie = new Cookie("sessionId", "");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+
+        return "redirect:/";
+    }
 }
