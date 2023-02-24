@@ -28,6 +28,7 @@ public class WebController {
             post.setMessage(i + ". Message");
             post.setTitle("Message #" + i);
             post.setPostOwner(this.webService.getUserRepo().findById(Long.valueOf((int) (Math.random() * (1 - 25) + 25))).get());
+            post.setPostOwner(this.webService.getUserRepo().findById((long) i).get());
             this.webService.getPostRepo().save(post);
 
         }

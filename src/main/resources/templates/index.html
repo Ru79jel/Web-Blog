@@ -27,9 +27,11 @@
         <div th:each="post : ${posts}">
             <h2><a th:href="@{'/' + ${post.postID} + '/comments'}">
                 <h5 th:text="${post.title}">Title</h5>
+
             </a> </h2>
 
             <span th:text="'Created on ' + ${post.timestamp}" >Created At</span>
+            <p th:text="${post.postOwner.userName}">Title</p>
             <p th:text="${post.message}">PostText</p> <br>
         </div>
     </div>
