@@ -2,6 +2,7 @@ package com.brightslearning.webblog;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
@@ -9,6 +10,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 public class BlogUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,8 +24,6 @@ public class BlogUser {
     private Set<BlogComment> comments;
     private boolean isAdmin;
 
-    public BlogUser() {
-    }
 
     public BlogUser(String userName, String password) {
         this.userName = userName;

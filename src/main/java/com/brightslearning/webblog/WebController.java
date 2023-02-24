@@ -16,6 +16,7 @@ public class WebController {
         this.webService = webService;
 
     }
+
     @GetMapping("/createTestdata")
     public @ResponseBody String createTestDate() {
         for (int i = 1; i < 25; i++) {
@@ -28,6 +29,7 @@ public class WebController {
             post.setMessage(i + ". Message");
             post.setTitle("Message #" + i);
             post.setPostOwner(this.webService.getUserRepo().findById(Long.valueOf((int) (Math.random() * (1 - 25) + 25))).get());
+            post.setPostOwner(this.webService.getUserRepo().findById((long) i).get());
             this.webService.getPostRepo().save(post);
 
         }
@@ -35,14 +37,15 @@ public class WebController {
     }
 
     @GetMapping("/")
-    public String showBlogBlogPosts(Model model) {
+    public String showBlogBlogPosts(Model model, @ModelAttribute("sessionUser") BlogUser sessionUser) {
         model.addAttribute("posts", this.webService.getPostRepo().findByOrderByTimestampDesc());
         model.addAttribute("newpost", new BlogPost());
         return "index";
     }
 
     @PostMapping("/")
-    public String newBlogPost(@ModelAttribute BlogPost post, Model model) {
+    public String newBlogPost(@ModelAttribute BlogPost post, @ModelAttribute("sessionUser") BlogUser sessionUser, Model model) {
+        post.setPostOwner(sessionUser);
         this.webService.getPostRepo().save(post);
         model.addAttribute("posts", this.webService.getPostRepo().findByOrderByTimestampDesc());
         model.addAttribute("newpost", new BlogPost());
@@ -59,9 +62,10 @@ public class WebController {
     }
 
     @PostMapping("/{postId}/comments")
-    public String newComment(@ModelAttribute BlogComment comment, @PathVariable long postId, Model model) {
+    public String newComment(@ModelAttribute BlogComment comment, @ModelAttribute("sessionUser") BlogUser sessionUser, @PathVariable long postId, Model model) {
         BlogPost blogPost = this.webService.getPostRepo().findById(postId).get();
         comment.setBlogPost(blogPost);
+        comment.setBlogUser(sessionUser);
         this.webService.getCommentRepo().save(comment);
         model.addAttribute("post", blogPost);
         model.addAttribute("comments", this.webService.getCommentRepo().findByBlogPostPostIDOrderByTimestampAsc(postId));
