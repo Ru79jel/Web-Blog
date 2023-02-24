@@ -12,23 +12,21 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 public class BlogUser {
-    private String password;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long userID;
     private String userName;
+    private String password;
     @OneToMany(mappedBy = "postOwner")
     private Set<BlogPost> blogPosts;
 
     @OneToMany(mappedBy = "blogUser")
     private Set<BlogComment> comments;
-
     private boolean isAdmin;
 
-    public BlogUser(String username, String password) {
-        this.userName = username;
+
+    public BlogUser(String userName, String password) {
+        this.userName = userName;
         this.password = password;
     }
-
-
 }

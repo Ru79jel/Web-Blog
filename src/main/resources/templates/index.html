@@ -10,7 +10,8 @@
         <h1>Beard Heaven</h1>
         <hr>
     <a th:href="@{/}">
-        <button><a th:href="@{/login}">SignIn</a></button> <button>Join</button>
+        <button><a th:href="@{/login}">LogIn</a></button>
+      <a th:href="@{/register}"><button>Register</button></a>
     </a>
 
     <form th:action="@{/}" th:object="${newpost}" method="post" >
@@ -27,7 +28,6 @@
         <div th:each="post : ${posts}">
             <h2><a th:href="@{'/' + ${post.postID} + '/comments'}">
                 <h5 th:text="${post.title}">Title</h5>
-
             </a> </h2>
 
             <span th:text="'Created on ' + ${post.timestamp}" >Created At</span>
