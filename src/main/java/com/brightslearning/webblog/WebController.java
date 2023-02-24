@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class WebController {
@@ -17,6 +14,10 @@ public class WebController {
     @Autowired
     public WebController(WebService webService) {
         this.webService = webService;
+
+    }
+    @GetMapping("/createTestdata")
+    public @ResponseBody String createTestDate() {
         for (int i = 1; i < 25; i++) {
             BlogUser user = new BlogUser();
             user.setUserName("User#" + i);
@@ -30,12 +31,12 @@ public class WebController {
             this.webService.getPostRepo().save(post);
 
         }
-
+        return "testdate created";
     }
 
     @GetMapping("/")
     public String showBlogBlogPosts(Model model) {
-        model.addAttribute("posts", this.webService.getPostRepo().findAll());
+        model.addAttribute("posts", this.webService.getPostRepo().findByOrderByTimestampDesc());
         model.addAttribute("newpost", new BlogPost());
         return "index";
     }
@@ -43,14 +44,14 @@ public class WebController {
     @PostMapping("/")
     public String newBlogPost(@ModelAttribute BlogPost post, Model model) {
         this.webService.getPostRepo().save(post);
-        model.addAttribute("posts", this.webService.getPostRepo().findAll());
+        model.addAttribute("posts", this.webService.getPostRepo().findByOrderByTimestampDesc());
         model.addAttribute("newpost", new BlogPost());
         return "index";
     }
 
     @GetMapping("/{postId}/comments")
     public String showComments(@PathVariable long postId, Model model) {
-        model.addAttribute("comments", this.webService.getCommentRepo().findByBlogPostPostID(postId));
+        model.addAttribute("comments", this.webService.getCommentRepo().findByBlogPostPostIDOrderByTimestampAsc(postId));
         model.addAttribute("newcomment", new BlogComment());
         BlogPost blogPost = this.webService.getPostRepo().findById(postId).get();
         model.addAttribute("post", blogPost);
@@ -63,7 +64,7 @@ public class WebController {
         comment.setBlogPost(blogPost);
         this.webService.getCommentRepo().save(comment);
         model.addAttribute("post", blogPost);
-        model.addAttribute("comments", this.webService.getCommentRepo().findByBlogPostPostID(postId));
+        model.addAttribute("comments", this.webService.getCommentRepo().findByBlogPostPostIDOrderByTimestampAsc(postId));
         model.addAttribute("newcomment", new BlogComment());
         return "viewcomments";
     }
