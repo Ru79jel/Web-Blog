@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CommentRepo extends CrudRepository<BlogComment, Long> {
    List<BlogComment> findByBlogPostPostID(long postid);
+   List<BlogComment> findByOrderByTimestampAsc();
 }
