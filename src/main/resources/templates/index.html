@@ -12,6 +12,8 @@
     <a th:href="@{/}">
         <button><a th:href="@{/login}">LogIn</a></button>
       <a th:href="@{/register}"><button>Register</button></a>
+        <a th:href="@{/logout}"><button>Logout</button></a>
+
     </a>
 
     <form th:action="@{/}" th:object="${newpost}" method="post" >
