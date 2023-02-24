@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+  <li th:each="user : ${users}">
+    ID
+    <span th:text="${user.getUserID()}"></span>
+    Name
+    <span th:text="${user.getUserName()}"></span>
+      Admin
+    <span th:text="${user.isAdmin()}"></span>
+
+    <input type="checkbox">
+  </li>
+</ul>
+
+</body>
+</html>
