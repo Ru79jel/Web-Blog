@@ -9,14 +9,17 @@
 <div class="container">
         <h1>Beard Heaven</h1>
         <hr>
-    <a th:href="@{/}">
-        <button><a th:href="@{/login}">LogIn</a></button>
+        <form th:if="${sessionUser == null}" th:action="@{/login}">
+            <button type="submit">Login</button>
+        </form>
       <a th:href="@{/register}"><button>Register</button></a>
-        <a th:href="@{/logout}"><button>Logout</button></a>
+        <form th:if="${sessionUser != null}" method="post" th:action="@{/logout}">
+            <button type="submit">Logout</button>
+        </form>
 
-    </a>
 
-    <form th:action="@{/}" th:object="${newpost}" method="post" >
+    <p th:if ="${sessionUser == null}" th:text="'Log in as admin to write a Post'"></p>
+    <form th:action="@{/}" th:object="${newpost}" method="post" th:if ="${sessionUser != null}">
         <p><input type="text" th:field="*{title}" placeholder="Titel"/></p>
         <label>
             <input type="text" name="name" size="20" th:field="*{message}" placeholder="New Post" />
