@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class WebController {
@@ -17,6 +14,10 @@ public class WebController {
     @Autowired
     public WebController(WebService webService) {
         this.webService = webService;
+
+    }
+    @GetMapping("/createTestdata")
+    public @ResponseBody String createTestDate() {
         for (int i = 1; i < 25; i++) {
             BlogUser user = new BlogUser();
             user.setUserName("User#" + i);
@@ -30,7 +31,7 @@ public class WebController {
             this.webService.getPostRepo().save(post);
 
         }
-
+        return "testdate created";
     }
 
     @GetMapping("/")
