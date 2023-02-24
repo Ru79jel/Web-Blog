@@ -33,7 +33,7 @@
             </a> </h2>
 
             <span th:text="'Created on ' + ${post.timestamp}" >Created At</span>
-            <p th:text="${post.postOwner.userName}">Title</p>
+            <p th:text="'Created by ' + ${post.postOwner.userName}">Title</p>
             <p th:text="${post.message}">PostText</p> <br>
         </div>
     </div>
