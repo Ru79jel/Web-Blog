@@ -10,7 +10,7 @@
         <h1>Beard Heaven</h1>
         <hr>
     <a th:href="@{/}">
-        <button>Sign in</button> <button>Join</button>
+        <button>Login</button> <a th:href="@{/register}"><button>Register</button></a>
     </a>
 
     <form th:action="@{/}" th:object="${newpost}" method="post" >
