@@ -35,7 +35,7 @@ public class WebController {
 
     @GetMapping("/")
     public String showBlogBlogPosts(Model model) {
-        model.addAttribute("posts", this.webService.getPostRepo().findAll());
+        model.addAttribute("posts", this.webService.getPostRepo().findByOrderByTimestampDesc());
         model.addAttribute("newpost", new BlogPost());
         return "index";
     }
@@ -43,14 +43,14 @@ public class WebController {
     @PostMapping("/")
     public String newBlogPost(@ModelAttribute BlogPost post, Model model) {
         this.webService.getPostRepo().save(post);
-        model.addAttribute("posts", this.webService.getPostRepo().findAll());
+        model.addAttribute("posts", this.webService.getPostRepo().findByOrderByTimestampDesc());
         model.addAttribute("newpost", new BlogPost());
         return "index";
     }
 
     @GetMapping("/{postId}/comments")
     public String showComments(@PathVariable long postId, Model model) {
-        model.addAttribute("comments", this.webService.getCommentRepo().findByBlogPostPostID(postId));
+        model.addAttribute("comments", this.webService.getCommentRepo().findByBlogPostPostIDOrderByTimestampAsc(postId));
         model.addAttribute("newcomment", new BlogComment());
         BlogPost blogPost = this.webService.getPostRepo().findById(postId).get();
         model.addAttribute("post", blogPost);
@@ -63,7 +63,7 @@ public class WebController {
         comment.setBlogPost(blogPost);
         this.webService.getCommentRepo().save(comment);
         model.addAttribute("post", blogPost);
-        model.addAttribute("comments", this.webService.getCommentRepo().findByBlogPostPostID(postId));
+        model.addAttribute("comments", this.webService.getCommentRepo().findByBlogPostPostIDOrderByTimestampAsc(postId));
         model.addAttribute("newcomment", new BlogComment());
         return "viewcomments";
     }
