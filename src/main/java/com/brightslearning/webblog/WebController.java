@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.sql.Struct;
+import java.time.LocalDate;
 
 @Controller
 public class WebController {
@@ -84,5 +85,34 @@ public class WebController {
         }
         return "redirect:" + UriComponentsBuilder.fromPath("/").pathSegment(String.valueOf(comment.getBlogPost().getPostID())).pathSegment("comments").toUriString();
     }
+
+    @GetMapping("/posts/edit/{id}")
+    public String editComment(@ModelAttribute("sessionUser") BlogUser sessionUser, @PathVariable long id, Model model) {
+        if(sessionUser.isAdmin()) {
+            model.addAttribute("postToEdit",this.webService.getPostRepo().findById(id).get());
+            return "editPost";
+        } else  return "redirect:/";
+    }
+    @PostMapping("/posts/edit/{id}")
+    public String editComment(@ModelAttribute BlogPost post, @ModelAttribute("sessionUser") BlogUser sessionUser, @PathVariable long id) {
+        if(sessionUser.isAdmin()) {
+            BlogPost postToEdit = this.webService.getPostRepo().findById(id).get();
+            postToEdit.setTitle(post.getTitle());
+            postToEdit.setMessage(post.getMessage());
+            postToEdit.setLastEditAt(LocalDate.now());
+            this.webService.getPostRepo().save(postToEdit);
+        }
+        return "redirect:/";
+    }
+
+    @GetMapping("/posts/delete/{postId}")
+    public String deletePost(@ModelAttribute("sessionUser") BlogUser sessionUser, @PathVariable long postId) {
+        if(sessionUser.isAdmin()) {
+            this.webService.getPostRepo().deleteById(postId);
+        }
+        return "redirect:/";
+    }
+
+
 
 }

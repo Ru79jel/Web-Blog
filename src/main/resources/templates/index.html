@@ -36,10 +36,14 @@
             <h2><a th:href="@{'/' + ${post.postID} + '/comments'}">
                 <h5 th:text="${post.title}">Title</h5>
             </a> </h2>
-
             <span th:text="'Created on ' + ${post.timestamp}" >Created At</span>
-            <p th:text="${post.postOwner.userName}">Title</p>
+            <span th:if="${post.lastEditAt != null}" th:text="'Last modified on ' + ${post.getLastEditAt()}" > </span>
+            <p th:text="'Created by ' + ${post.postOwner.userName}">Title</p>
             <p th:text="${post.message}">PostText</p> <br>
+            <button th:if="${sessionUser != null} and ${sessionUser.admin}">
+                <a th:href="@{/posts/edit/{id}(id=${post.postID})}">Edit</a></button>
+            <button th:if="${sessionUser != null} and ${sessionUser.admin}">
+                <a th:href="@{/posts/delete/{postId}(postId=${post.postID})}">Delete</a></button>
         </div>
     </div>
 </div>
