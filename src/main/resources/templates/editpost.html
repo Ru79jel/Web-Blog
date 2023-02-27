@@ -5,10 +5,11 @@
     <title>Edit Comment</title>
 </head>
 <body>
-<form th:action="@{/posts/edit/{id}(id = ${postToEdit.postID})}" th:object="${postToEdit}" method="post" th:if ="${sessionUser != null} and ${sessionUser.admin}">
-    <p><input type="text" th:field="*{title}" placeholder="Titel"/></p>
+<form th:action="@{/posts/edit/{id}(id = ${postToEdit.postID})}" th:object="${postToEdit}" method="post"
+      th:if="${sessionUser != null} and ${sessionUser.admin}">
+    <input type="text" th:field="*{title}" placeholder="Titel"/>
     <label>
-        <input type="text" name="name" size="20" th:field="*{message}" placeholder="New Post" />
+        <input type="text" name="name" size="20" th:field="*{message}" placeholder="New Post"/>
         <input type="submit" value="save">
     </label>
 </form>

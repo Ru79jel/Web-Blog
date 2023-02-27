@@ -5,9 +5,9 @@
     <title>Login</title>
 </head>
 <body>
-<form th:action="@{/login}" th:method = "post" th:object = "${blogUser}">
+<form th:action="@{/login}" th:method="post" th:object="${blogUser}">
     Username: <input type="text" th:field="*{userName}"> <br>
-    Password: <input type = "password" th:field="*{password}">
+    Password: <input type="password" th:field="*{password}">
     <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
     <button type="submit">Login</button>
 </form>

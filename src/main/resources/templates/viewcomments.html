@@ -15,9 +15,10 @@
 
 <div th:each="comment : ${comments}">
     <h2>
-         <a th:text="'Created by ' +${comment.blogUser.userName}">
-    </a>
-    </h2><hr>
+        <a th:text="'Created by ' +${comment.blogUser.userName}">
+        </a>
+    </h2>
+    <hr>
     <span th:text="'Created on ' + ${comment.timestamp}">Created At</span>
     <p th:text="${comment.content}">Kommentare</p>
     <button th:if="${sessionUser != null} and (${sessionUser.equals(comment.blogUser)} or ${sessionUser.admin})">
@@ -25,11 +26,12 @@
 </div>
 
 <hr>
-<p th:if ="${sessionUser == null}" th:text="'Log in to write a comment'"></p>
-<form th:action="@{/{postId}/comments(postId=${post.postID})}" method="post" th:object="${newcomment}" th:if ="${sessionUser != null}">
+<p th:if="${sessionUser == null}" th:text="'Log in to write a comment'"></p>
+<form th:action="@{/{postId}/comments(postId=${post.postID})}" method="post" th:object="${newcomment}"
+      th:if="${sessionUser != null}">
     <label>
         <input type="text" name="name" size="20" th:field="*{content}" placeholder="New Comment"/>
-        <p><input type="submit" value="save"></p>
+        <input type="submit" value="save">
     </label>
 </form>
 </body>
