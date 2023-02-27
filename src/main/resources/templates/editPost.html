@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>Edit Comment</title>
+</head>
+<body>
+<form th:action="@{/posts/edit/{id}(id = ${postToEdit.postID})}" th:object="${postToEdit}" method="post" th:if ="${sessionUser != null} and ${sessionUser.admin}">
+    <p><input type="text" th:field="*{title}" placeholder="Titel"/></p>
+    <label>
+        <input type="text" name="name" size="20" th:field="*{message}" placeholder="New Post" />
+        <p><input type="submit" value="save"></p>
+    </label>
+</form>
+</body>
+</html>

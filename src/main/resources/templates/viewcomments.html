@@ -20,7 +20,8 @@
     </h2><hr>
     <span th:text="'Created on ' + ${comment.timestamp}">Created At</span>
     <p th:text="${comment.content}">Kommentare</p>
-    <button th:if="${sessionUser != null} and (${sessionUser.equals(comment.blogUser)} or ${sessionUser.admin})"><a th:href="@{/comments/delete/{id}(id=${comment.id})}">Delete</a></button>
+    <button th:if="${sessionUser != null} and (${sessionUser.equals(comment.blogUser)} or ${sessionUser.admin})">
+        <a th:href="@{/comments/delete/{id}(id=${comment.id})}">Delete</a></button>
 </div>
 
 <hr>

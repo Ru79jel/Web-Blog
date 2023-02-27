@@ -2,9 +2,11 @@ package com.brightslearning.webblog;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 
@@ -18,6 +20,9 @@ public class BlogPost {
     private String message;
     private LocalDate timestamp;
     private String title;
+
+    private LocalDate lastEditAt;
+
     @ManyToOne
     private BlogUser postOwner;
 

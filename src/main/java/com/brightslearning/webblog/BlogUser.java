@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 @Getter
@@ -22,6 +23,8 @@ public class BlogUser {
 
     @OneToMany(mappedBy = "blogUser")
     private Set<BlogComment> comments;
+
+
     private boolean isAdmin;
 
 
