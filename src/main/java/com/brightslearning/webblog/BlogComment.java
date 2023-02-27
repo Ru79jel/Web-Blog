@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
 
+
 @Data
 @Entity
 public class BlogComment {

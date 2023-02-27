@@ -1,15 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
-<form th:action="@{/login}" th:method = "post" th:object = "${blogUser}">
-    Username: <input type="text" th:field="*{userName}"> <br>
-    Password: <input type = "password" th:field="*{password}">
-    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
-    <button type="submit">Login</button>
-</form>
+
+<section class="hero is-fullheight">
+    <div class="hero-body color2">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-4">
+
+                    <h1 class="textcolor is-size-1">LogIn</h1>
+                    <form class="box color3" th:action="@{/login}" th:method="post" th:object="${blogUser}">
+                        <div>
+                            <label class="label textcolor">
+                                Username:
+                            </label>
+                            <input class="input color1" type="text" th:field="*{userName}">
+                            <label class="label textcolor">
+                                Password:
+                            </label>
+                            <input class="input color1" type="password" th:field="*{password}">
+                            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                        </div>
+                        <div>
+                            <button class="button color5 textcolor" type="submit">Login</button>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 </body>
 </html>

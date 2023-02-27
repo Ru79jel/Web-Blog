@@ -1,19 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign up</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
-<h1>Sign up</h1>
-<form th:action="@{/register}" th:object="${registration}" method="post">
-    Username: <input type="text" th:field="*{username}"><br/>
-    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
-    Password: <input type="password" th:field="*{password1}"><br/>
-    <p th:if="${#fields.hasErrors('password1')}" th:errors="*{password1}"></p>
-    Password repeat: <input type="password" th:field="*{password2}"><br/>
-    <p th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}"></p>
-    <button type="submit">Register</button>
-</form>
+<section class="hero is-fullheight">
+    <div class="hero-body color2">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-4">
+
+                    <h1 class="textcolor is-size-1">Sign up</h1>
+                    <form class="box color3" th:action="@{/register}" th:object="${registration}" method="post">
+                        <div>
+                            <label class="label textcolor">
+                                Username:
+                            </label>
+                            <input class="input color1" type="text" th:field="*{username}">
+                            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+                            <label class="label textcolor">
+                                Password:
+                            </label>
+                            <input class="input color1" type="password" th:field="*{password1}">
+                            <p th:if="${#fields.hasErrors('password1')}" th:errors="*{password1}"></p>
+                        </div>
+                        <label class="label textcolor">
+                            Password repeat:
+                        </label>
+                        <input class="input color1" type="password" th:field="*{password2}">
+                        <p th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}"></p>
+                        <div>
+                            <button class="button color5 textcolor" type="submit">Register</button>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>

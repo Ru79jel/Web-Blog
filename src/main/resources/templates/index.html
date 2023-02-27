@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Welcome to Beard Heaven</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <title>BBB-Blog</title>
 </head>
 <body>
 
 <div class="container">
-        <h1>Beard Heaven</h1>
+        <h1>Beauty, Beer and Beard</h1>
         <hr>
         <form th:if="${sessionUser == null}" th:action="@{/login}">
             <button type="submit">Login</button>
@@ -36,7 +38,7 @@
             </a> </h2>
 
             <span th:text="'Created on ' + ${post.timestamp}" >Created At</span>
-            <p th:text="'Created by ' + ${post.postOwner.userName}">Title</p>
+            <p th:text="${post.postOwner.userName}">Title</p>
             <p th:text="${post.message}">PostText</p> <br>
         </div>
     </div>
