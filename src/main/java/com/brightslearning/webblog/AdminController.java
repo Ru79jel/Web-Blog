@@ -1,7 +1,7 @@
 package com.brightslearning.webblog;
 
-import com.brightslearning.webblog.BlogUser;
-import com.brightslearning.webblog.UserRepo;
+import com.brightslearning.webblog.user.BlogUser;
+import com.brightslearning.webblog.user.UserRepo;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
