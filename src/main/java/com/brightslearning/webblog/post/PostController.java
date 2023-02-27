@@ -25,6 +25,7 @@ public class PostController {
     public String showBlogPosts(Model model, @ModelAttribute("sessionUser") BlogUser sessionUser) {
         model.addAttribute("posts", this.postRepo.findByOrderByTimestampDesc());
         model.addAttribute("newpost", new BlogPost());
+        System.out.println(this.postRepo.findById(902L).get().getComments().size());
         return "index";
     }
 

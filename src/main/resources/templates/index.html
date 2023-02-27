@@ -40,7 +40,13 @@
             <span th:text="'Created on ' + ${post.timestamp}">Created At</span>
             <span th:if="${post.lastEditAt != null}" th:text="'Last modified on ' + ${post.getLastEditAt()}"> </span>
             <p th:text="'Created by ' + ${post.postOwner.userName}">Title</p>
+            <p th:text="${post.comments.size() + 'Kommentare'}"></p>
             <p th:text="${post.message}">PostText</p> <br>
+            <ul>
+                <li th:each="kommentar : ${post.getComments()}">
+                    <span th:text="${kommentar.content}"></span>
+                </li>
+            </ul>
             <button th:if="${sessionUser != null} and ${sessionUser.admin}">
                 <a th:href="@{/posts/edit/{id}(id=${post.postID})}">Edit</a></button>
             <button th:if="${sessionUser != null} and ${sessionUser.admin}">
