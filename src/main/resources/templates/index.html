@@ -9,35 +9,39 @@
 <body>
 
 <div class="container">
-        <h1>Beauty, Beer and Beard</h1>
-        <hr>
-        <form th:if="${sessionUser == null}" th:action="@{/login}">
-            <button type="submit">Login</button>
-        </form>
-      <a th:href="@{/register}"><button>Register</button></a>
-        <form th:if="${sessionUser != null}" method="post" th:action="@{/logout}">
-            <button type="submit">Logout</button>
-        </form>
-
-
-    <p th:if ="${sessionUser != null} and ${!sessionUser.admin}" th:text="'Log in as admin to write a Post'"></p>
-    <form th:action="@{/}" th:object="${newpost}" method="post" th:if ="${sessionUser != null} and ${sessionUser.admin}">
-        <p><input type="text" th:field="*{title}" placeholder="Titel"/></p>
-        <label>
-            <input type="text" name="name" size="20" th:field="*{message}" placeholder="New Post" />
-            <p><input type="submit" value="save"></p>
-        </label>
+    <h1>Beauty, Beer and Beard</h1>
+    <hr>
+    <form th:if="${sessionUser == null}" th:action="@{/login}">
+        <button type="submit">Login</button>
     </form>
 
+    <a th:href="@{/register}">
+        <button>Register</button>
+    </a>
+
+    <form th:if="${sessionUser != null}" method="post" th:action="@{/logout}">
+        <button type="submit">Logout</button>
+    </form>
+
+
+    <p th:if="${sessionUser != null} and ${!sessionUser.admin}" th:text="'Log in as admin to write a Post'"></p>
+
+    <form th:action="@{/}" th:object="${newpost}" method="post" th:if="${sessionUser != null} and ${sessionUser.admin}">
+        <p><input type="text" th:field="*{title}" placeholder="Titel"/></p>
+        <label>
+            <input type="text" name="name" size="20" th:field="*{message}" placeholder="New Post"/>
+            <input type="submit" value="save">
+        </label>
+    </form>
     <hr>
 
     <div class="post-container">
         <div th:each="post : ${posts}">
             <h2><a th:href="@{'/' + ${post.postID} + '/comments'}">
                 <h5 th:text="${post.title}">Title</h5>
-            </a> </h2>
-            <span th:text="'Created on ' + ${post.timestamp}" >Created At</span>
-            <span th:if="${post.lastEditAt != null}" th:text="'Last modified on ' + ${post.getLastEditAt()}" > </span>
+            </a></h2>
+            <span th:text="'Created on ' + ${post.timestamp}">Created At</span>
+            <span th:if="${post.lastEditAt != null}" th:text="'Last modified on ' + ${post.getLastEditAt()}"> </span>
             <p th:text="'Created by ' + ${post.postOwner.userName}">Title</p>
             <p th:text="${post.message}">PostText</p> <br>
             <button th:if="${sessionUser != null} and ${sessionUser.admin}">
