@@ -1,12 +1,12 @@
-package com.brightslearning.webblog;
+package com.brightslearning.webblog.comment;
 
+import com.brightslearning.webblog.post.BlogPost;
+import com.brightslearning.webblog.user.BlogUser;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Locale;
+
 
 @Data
 @Entity
