@@ -38,4 +38,21 @@ public class AdminController {
         return "editUser";
     }
 
+    @PostMapping("/user/{id}")
+    public String setAdmin (@PathVariable long id, Model model){
+        BlogUser user = userRepo.findById(id).get();
+        if(user.isAdmin() == false) {
+            user.setAdmin(true);
+        }
+        else {
+            user.setAdmin(false);
+        }
+
+        userRepo.save(user);
+        model.addAttribute("user",user);
+
+        return "editUser";
+
+    }
+
 }

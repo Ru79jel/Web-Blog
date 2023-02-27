@@ -32,12 +32,12 @@
 
 </div>
 
-<form th:object="${user}" method="post">
-    <label>
-        <input type="checkbox" th:checked="${user.isAdmin}" th:field="*{isAdmin}"/>
-    </label>
-    <button type="submit">Save</button>
+<form th:object="${user}" method="post" th:action="@{'/user/' + ${user.getUserID()}}">
+    <button th:if="${user.admin == false}" type="submit">Change to Admin</button>
+    <button th:if="${user.admin != false}" type="submit">Change to User</button>
 </form>
+
+
 
 <a th:href="@{/userlist}">Back to User List</a>
 
