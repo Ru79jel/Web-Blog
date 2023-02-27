@@ -1,13 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" name="viewport" content="width=device-width, initial-scale=1">
 <head>
     <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
     <title>Error</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
- <p>There is no post/comment with that id.</p>
- <a th:href="@{/}">
-   <button>Home</button>
- </a>
+<section class="hero is-fullheight">
+    <div class="hero-body color2">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-4">
+                    <p class="box color3 textcolor is-size-3">There is no post/comment with that id.</p>
+                    <a th:href="@{/}">
+                        <button class="button color5 textcolor" type="submit">Home</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>
