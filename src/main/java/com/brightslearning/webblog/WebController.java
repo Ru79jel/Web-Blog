@@ -105,6 +105,14 @@ public class WebController {
         return "redirect:/";
     }
 
+    @GetMapping("/posts/delete/{postId}")
+    public String deletePost(@ModelAttribute("sessionUser") BlogUser sessionUser, @PathVariable long postId) {
+        if(sessionUser.isAdmin()) {
+            this.webService.getPostRepo().deleteById(postId);
+        }
+        return "redirect:/";
+    }
+
 
 
 }

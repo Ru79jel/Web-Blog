@@ -26,7 +26,7 @@ public class BlogPost {
     @ManyToOne
     private BlogUser postOwner;
 
-    @OneToMany(mappedBy = "blogPost")
+    @OneToMany(mappedBy = "blogPost",cascade = CascadeType.REMOVE)
     private Set<BlogComment> comments;
 
     public BlogPost() {
