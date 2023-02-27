@@ -1,15 +1,14 @@
-package com.brightslearning.webblog;
+package com.brightslearning.webblog.post;
 
+import com.brightslearning.webblog.user.BlogUser;
+import com.brightslearning.webblog.comment.BlogComment;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @Entity
 public class BlogPost {
     @Id
@@ -18,10 +17,10 @@ public class BlogPost {
     private String message;
     private LocalDate timestamp;
     private String title;
+    private LocalDate lastEditAt;
     @ManyToOne
     private BlogUser postOwner;
-
-    @OneToMany(mappedBy = "blogPost")
+    @OneToMany(mappedBy = "blogPost", cascade = CascadeType.REMOVE)
     private Set<BlogComment> comments;
 
     public BlogPost() {

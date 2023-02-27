@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Comments</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
 <a th:href="@{/}">
@@ -10,25 +12,28 @@
 </a>
 <hr>
 
-<span th:text="'Created on' + ${post.timestamp}">Created At</span>
+<span th:text="'Created on ' + ${post.timestamp}">Created At</span>
 <p th:text="${post.message}">PostText</p>
 
 <div th:each="comment : ${comments}">
     <h2>
-         <a th:text="'Created by' +${comment.blogUser.userName}">
-    </a>
-    </h2><hr>
-    <span th:text="'Created on' + ${comment.timestamp}">Created At</span>
+        <a th:text="'Created by ' +${comment.blogUser.userName}">
+        </a>
+    </h2>
+    <hr>
+    <span th:text="'Created on ' + ${comment.timestamp}">Created At</span>
     <p th:text="${comment.content}">Kommentare</p>
-
+    <button th:if="${sessionUser != null} and (${sessionUser.equals(comment.blogUser)} or ${sessionUser.admin})">
+        <a th:href="@{/comments/delete/{id}(id=${comment.id})}">Delete</a></button>
 </div>
 
 <hr>
-<p th:if ="${sessionUser == null}" th:text="'Log in to write a comment'"></p>
-<form th:action="@{/{postId}/comments(postId=${post.postID})}" method="post" th:object="${newcomment}" th:if ="${sessionUser != null}">
+<p th:if="${sessionUser == null}" th:text="'Log in to write a comment'"></p>
+<form th:action="@{/{postId}/comments(postId=${post.postID})}" method="post" th:object="${newcomment}"
+      th:if="${sessionUser != null}">
     <label>
         <input type="text" name="name" size="20" th:field="*{content}" placeholder="New Comment"/>
-        <p><input type="submit" value="save"></p>
+        <input type="submit" value="save">
     </label>
 </form>
 </body>

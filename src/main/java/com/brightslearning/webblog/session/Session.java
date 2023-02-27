@@ -1,6 +1,6 @@
 package com.brightslearning.webblog.session;
 
-import com.brightslearning.webblog.BlogUser;
+import com.brightslearning.webblog.user.BlogUser;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -16,10 +16,8 @@ import java.util.UUID;
 public class Session {
     @Id
     private String id = UUID.randomUUID().toString();
-
     @ManyToOne
     private BlogUser blogUser;
-
     private Instant expiresAt;
 
     public Session(BlogUser blogUser, Instant expiresAt) {
