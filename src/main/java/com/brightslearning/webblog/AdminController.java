@@ -25,9 +25,10 @@ public class AdminController {
     }
 
     @PostMapping("/userlist")
-    public String refreshAdminPage(@ModelAttribute Model model){
-        Iterable<BlogUser> users = userRepo.findAll();
+    public String refreshAdminPage(@ModelAttribute Iterable<BlogUser> users, Model model){
+
         model.addAttribute("users", users);
+
         return "redirect:/userList";
     }
 

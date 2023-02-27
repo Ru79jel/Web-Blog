@@ -5,9 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-<form th:object="${users}" method="post">
+
 <ul>
   <li th:each="user : ${users}">
+    <form th:object="${user}" method="post">
     ID
     <span th:text="${user.getUserID()}"></span>
     Name
@@ -16,14 +17,17 @@
     <span th:text="${user.isAdmin()}"></span>
 
     <!--<input type="checkbox" th:checked="${user.isAdmin()}"/>-->
-    <input type="checkbox" th:checked="${user.isAdmin}" th:onclick="${user.isAdmin() ? false: true}"  th:field="*{users[__${userStat.index}__].isAdmin}"/>
+ <label>
+    <input type="checkbox" th:field="*{isAdmin}" />
+ </label>
 
-
+      <button type="submit">Save</button>
+  </form>
   </li>
 
-    <button type="submit">Save</button>
+
 </ul>
-</form>
+
 
 </body>
 </html>
