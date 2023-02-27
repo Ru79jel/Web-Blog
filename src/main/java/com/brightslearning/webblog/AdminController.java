@@ -31,5 +31,11 @@ public class AdminController {
 
         return "redirect:/userList";
     }
+    @GetMapping("/user/{id}")
+    public String editUser (@PathVariable long id,Model model){
+        BlogUser user = userRepo.findById(id).get();
+        model.addAttribute("user",user);
+        return "editUser";
+    }
 
 }

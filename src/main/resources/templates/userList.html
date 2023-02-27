@@ -11,13 +11,11 @@
 </form>
 <ul>
   <li th:each="user : ${users}">
-    <form th:object="${user}" method="post">
     ID
     <span th:text="${user.getUserID()}"></span>
     Name
-    <span th:text="${user.getUserName()}"></span>
-      Admin
-    <span th:text="${user.isAdmin()}"></span>
+    <a th:href="@{'/user/' + ${user.getUserID()}}" th:text="${user.getUserName()}"></a>
+
 
     <!--<input type="checkbox" th:checked="${user.isAdmin()}"/>-->
 
