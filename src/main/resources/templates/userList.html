@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:action="@{/}">
+    <button type="submit">Home</button>
+</form>
+<ul>
+  <li th:each="user : ${users}">
+    ID
+    <span th:text="${user.getUserID()}"></span>
+    Name
+    <a th:href="@{'/user/' + ${user.getUserID()}}" th:text="${user.getUserName()}"></a>
+
+
+    <!--<input type="checkbox" th:checked="${user.isAdmin()}"/>-->
+
+  </li>
+
+
+</ul>
+
+
+</body>
+</html>

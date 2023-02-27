@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<style>
+   div,h1,a {
+       margin: 20px;
+   }
+
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Beard Heaven</title>
+</head>
+<body>
+
+<h1 class="title">User: </h1>
+<div class="container columns">
+
+    <div class="column is-one-third">ID</div>
+
+    <div class="column is-one-third">Name</div>
+
+</div>
+
+<div class="container columns">
+
+    <div class="column is-one-third" th:text="${user.getUserID()}" ></div>
+
+    <div class="column is-one-third" th:text="${user.getUserName()}" ></div>
+
+
+</div>
+
+<form th:object="${user}" method="post" th:action="@{'/user/' + ${user.getUserID()}}">
+    <button th:if="${user.admin == false}" type="submit">Change to Admin</button>
+    <button th:if="${user.admin != false}" type="submit">Change to User</button>
+</form>
+
+
+
+<a th:href="@{/userlist}">Back to User List</a>
+
+</body>
+</html>

@@ -23,6 +23,10 @@
         <button type="submit">Logout</button>
     </form>
 
+    <form th:if="${sessionUser != null and sessionUser.admin == true}" th:action="@{/userlist}">
+        <button type="submit">User List</button>
+    </form>
+
 
     <p th:if="${sessionUser != null} and ${!sessionUser.admin}" th:text="'Log in as admin to write a Post'"></p>
 
