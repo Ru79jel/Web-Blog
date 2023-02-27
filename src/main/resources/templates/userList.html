@@ -6,6 +6,9 @@
 </head>
 <body>
 
+<form th:action="@{/}">
+    <button type="submit">Home</button>
+</form>
 <ul>
   <li th:each="user : ${users}">
     <form th:object="${user}" method="post">
@@ -17,12 +20,7 @@
     <span th:text="${user.isAdmin()}"></span>
 
     <!--<input type="checkbox" th:checked="${user.isAdmin()}"/>-->
- <label>
-    <input type="checkbox" th:field="*{isAdmin}" />
- </label>
 
-      <button type="submit">Save</button>
-  </form>
   </li>
 
 

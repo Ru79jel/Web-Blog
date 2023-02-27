@@ -12,10 +12,15 @@
         <form th:if="${sessionUser == null}" th:action="@{/login}">
             <button type="submit">Login</button>
         </form>
+
       <a th:href="@{/register}"><button>Register</button></a>
         <form th:if="${sessionUser != null}" method="post" th:action="@{/logout}">
             <button type="submit">Logout</button>
         </form>
+
+    <form th:if="${sessionUser != null and sessionUser.admin == true}" th:action="@{/userlist}">
+        <button type="submit">User List</button>
+    </form>
 
 
     <p th:if ="${sessionUser == null}" th:text="'Log in as admin to write a Post'"></p>
