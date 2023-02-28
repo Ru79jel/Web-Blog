@@ -33,10 +33,12 @@
     <hr>
 
     <div class="post-container">
-        <div th:each="post : ${posts}">
+        <!--iterating through maps -  see https://attacomsian.com/blog/thymeleaf-iterate-map-list-set-array-->
+        <div th:each="entry : ${postsMap}" th:with="post=${entry.key}">
             <h2><a th:href="@{'/' + ${post.postID} + '/comments'}">
                 <h5 th:text="${post.title}">Title</h5>
             </a></h2>
+                <h6 th:text="${entry.value} + ' comments.'">Comments</h6>
             <span th:text="'Created on ' + ${post.timestamp}">Created At</span>
             <span th:if="${post.lastEditAt != null}" th:text="'Last modified on ' + ${post.getLastEditAt()}"> </span>
             <p th:text="'Created by ' + ${post.postOwner.userName}">Title</p>
