@@ -67,7 +67,7 @@
     <span th:text="'Created on ' + ${comment.timestamp} + ' by ' + ${comment.blogUser.userName}"></span>
     <br>
     <p th:text="${comment.content}">Kommentare</p>
-    <button th:if="${sessionUser != null} and (${sessionUser.equals(comment.blogUser)} or ${sessionUser.admin})">
+    <button class="button" th:if="${sessionUser != null} and (${sessionUser.equals(comment.blogUser)} or ${sessionUser.admin})">
         <a th:href="@{/comments/delete/{id}(id=${comment.id})}">Delete</a></button>
 
 </div>
@@ -77,8 +77,9 @@
 <form th:action="@{/{postId}/comments(postId=${post.postID})}" method="post" th:object="${newcomment}"
       th:if="${sessionUser != null}">
     <label>
-        <input type="text" name="name" size="20" th:field="*{content}" placeholder="New Comment"/>
-        <input type="submit" value="save">
+        <input style="padding: 1em 2em; cursor: text; display: flex; margin: auto; justify-content: space-between;
+    align-content: center;" type="text" name="name" size="20" th:field="*{content}" placeholder="New Comment"/>
+        <button class="button pillen-button" type="submit" >Comment</button>
     </label>
 </form>
 </body>
