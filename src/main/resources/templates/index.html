@@ -91,7 +91,7 @@
             <label>
                 <input class="input textarea" type="text" name="name" size="20" th:field="*{message}"
                        placeholder="Text Area"/>
-                <input type="submit" value="save">
+                <button class="button pillen-button" type="submit">Post</button>
             </label>
         </form>
     </div>
@@ -108,9 +108,9 @@
                 <p class="subtitle" th:text="${post.message}">PostText</p>
                 <p><a th:href="@{'/' + ${post.postID} + '/comments'}" th:text="${entry.value} + ' comments'">
                     Comments </a></p>
-                <button th:if="${sessionUser != null} and ${sessionUser.admin}">
+                <button class="button" th:if="${sessionUser != null} and ${sessionUser.admin}">
                     <a th:href="@{/posts/edit/{id}(id=${post.postID})}">Edit</a></button>
-                <button th:if="${sessionUser != null} and ${sessionUser.admin}">
+                <button class="button" th:if="${sessionUser != null} and ${sessionUser.admin}">
                     <a th:href="@{/posts/delete/{postId}(postId=${post.postID})}">Delete</a></button>
             </div>
         </div>
