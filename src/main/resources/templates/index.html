@@ -84,7 +84,7 @@
 
 <div class="container">
     <div class="columns is-centered">
-        <div class="column is-4">
+        <div class="column is-6">
             <form class="box color2 posts" th:action="@{/}" th:object="${newpost}" method="post"
                   th:if="${sessionUser != null} and ${sessionUser.admin}">
                 <div>
@@ -102,7 +102,7 @@
     </div>
 </div>
 
-
+<div class="column">
 <div class="post-container tile is-ancestor is-vertical">
     <!--iterating through maps -  see https://attacomsian.com/blog/thymeleaf-iterate-map-list-set-array-->
     <div th:each="entry : ${postsMap}" th:with="post=${entry.key}" class="color2 posts">
