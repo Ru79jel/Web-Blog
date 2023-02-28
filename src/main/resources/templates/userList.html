@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,23 +9,28 @@
 <body>
 
 <form th:action="@{/}">
-    <button type="submit">Home</button>
+    <button class="button color5 textcolor" type="submit">Home</button>
 </form>
-<ul>
-  <li th:each="user : ${users}">
-    ID
-    <span th:text="${user.getUserID()}"></span>
-    Name
-    <a th:href="@{'/user/' + ${user.getUserID()}}" th:text="${user.getUserName()}"></a>
 
-
-    <!--<input type="checkbox" th:checked="${user.isAdmin()}"/>-->
-
-  </li>
-
-
-</ul>
-
-
+<div class="container">
+    <div class="columns is-centered">
+        <form class="column is-4">
+            <h1 class="textcolor is-size-1">User List</h1>
+            <div class="box color3">
+                <label class="label textcolor">
+                    <ul >
+                        <li th:each="user : ${users}">
+                            ID
+                            <span th:text="${user.getUserID()}"></span>
+                            Name
+                            <a th:href="@{'/user/' + ${user.getUserID()}}" th:text="${user.getUserName()}"></a>
+                            <!--<input type="checkbox" th:checked="${user.isAdmin()}"/>-->
+                        </li>
+                    </ul>
+                </label>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>
