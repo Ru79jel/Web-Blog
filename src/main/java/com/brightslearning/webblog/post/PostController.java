@@ -1,5 +1,7 @@
 package com.brightslearning.webblog.post;
 
+import com.brightslearning.webblog.comment.BlogComment;
+import com.brightslearning.webblog.comment.CommentRepo;
 import com.brightslearning.webblog.user.BlogUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,21 +12,39 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class PostController {
     private PostRepo postRepo;
+    private CommentRepo commentRepo;
 
 
     @Autowired
-    public PostController(PostRepo postRepo) {
+    public PostController(PostRepo postRepo, CommentRepo commentRepo) {
         this.postRepo = postRepo;
+        this.commentRepo = commentRepo;
     }
 
     @GetMapping("/")
     public String showBlogPosts(Model model, @ModelAttribute("sessionUser") BlogUser sessionUser) {
-        model.addAttribute("posts", this.postRepo.findByOrderByTimestampDesc());
+        // get all posts
+        List<BlogPost> posts = this.postRepo.findByOrderByTimestampDesc();
+
+        // determine the number of comments for each post and save them in a Map
+        Map<BlogPost, Integer> countedBlogPosts = new HashMap<>();
+        for (BlogPost p : posts) {
+            List<BlogComment> comments = this.commentRepo.findByBlogPostPostIDOrderByTimestampAsc(p.getPostID());
+            countedBlogPosts.put(p,comments.size());
+        }
+
+        // hand over the Map as a model attribute
+
+//        model.addAttribute("posts", this.postRepo.findByOrderByTimestampDesc());   // replaced that by the postsMap!
         model.addAttribute("newpost", new BlogPost());
+        model.addAttribute("postsMap", countedBlogPosts);
         return "index";
     }
 
