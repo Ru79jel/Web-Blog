@@ -146,5 +146,9 @@ nav {
 a{
     color: #151519;
 }
+.card{
+    background-color: #DAD7CD;
+    margin-left: 10px;
+}
 
 
