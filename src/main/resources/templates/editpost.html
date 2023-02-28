@@ -20,11 +20,12 @@
                             <input class="input color1" type="text" th:field="*{title}" placeholder="Title"/>
                         </div>
                         <div class="column">
-                            <input class="input textarea color1" type="text" size="150" th:field="*{message}" placeholder="Edit Post"/>
+                            <textarea class="input textarea color1" rows="10" cols="100" wrap="soft" th:field="*{message}" placeholder="Edit Post"></textarea>
                         </div>
                         <div>
                             <button class="button color5 textcolor" type="submit">save</button>
                         </div>
+                        </form>
                 </div>
             </div>
         </div>
