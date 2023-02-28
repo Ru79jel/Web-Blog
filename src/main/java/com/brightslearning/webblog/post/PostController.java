@@ -37,7 +37,7 @@ public class PostController {
         Map<BlogPost, Integer> countedBlogPosts = new HashMap<>();
         for (BlogPost p : posts) {
             List<BlogComment> comments = this.commentRepo.findByBlogPostPostIDOrderByTimestampAsc(p.getPostID());
-            countedBlogPosts.put(p,comments.size());
+            countedBlogPosts.put(p, comments.size());
         }
 
         // hand over the Map as a model attribute
@@ -53,7 +53,15 @@ public class PostController {
                               Model model) {
         post.setPostOwner(sessionUser);
         this.postRepo.save(post);
-        model.addAttribute("posts", this.postRepo.findByOrderByTimestampDesc());
+        List<BlogPost> posts = this.postRepo.findByOrderByTimestampDesc();
+
+        // determine the number of comments for each post and save them in a Map
+        Map<BlogPost, Integer> countedBlogPosts = new HashMap<>();
+        for (BlogPost p : posts) {
+            List<BlogComment> comments = this.commentRepo.findByBlogPostPostIDOrderByTimestampAsc(p.getPostID());
+            countedBlogPosts.put(p, comments.size());
+        }
+        model.addAttribute("postsMap", countedBlogPosts);
         model.addAttribute("newpost", new BlogPost());
         return "index";
     }
