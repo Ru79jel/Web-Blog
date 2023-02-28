@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{style.css}">
+    <script src="https://kit.fontawesome.com/876162a540.js" crossorigin="anonymous"></script>
     <title>BBB-Blog</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
@@ -22,7 +23,7 @@
 </head>
 <body>
 <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
+    <div class="navbar-start">
         <a class="navbar-item">
             <!--  <img src=".png" alt="Logo"> -->
         </a>
@@ -30,71 +31,124 @@
         <a class="navbar-item" th:href="@{/}">
             Home
         </a>
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
+
+        <a class="navbar-item">
+            Documentation
         </a>
+
     </div>
 
-    <div class="navbar-menu">
-        <div class="navbar-end">
+    <div class="navbar-end">
+        <form th:if="${sessionUser == null}" th:action="@{/login}">
+            <button type="submit" class="button">Login</button>
+        </form>
 
-            <form  class = "navbar-item"  th:if="${sessionUser == null}" th:action="@{/login}">
-                <button type="submit" class="button">Login</button>
-            </form>
-            <form class = "navbar-item"  method="post" th:action="@{/register}">
-                <button type="submit" class="button">Register</button>
-            </form>
-            <form class = "navbar-item" th:if="${sessionUser != null}" method="post" th:action="@{/logout}">
-                <button type="submit" class="button">Logout</button>
-            </form>
-            <form class = "navbar-item" th:if="${sessionUser != null and sessionUser.admin == true}" th:action="@{/userlist}">
-                <button type="submit" class="button">User List</button>
-            </form>
-        </div>
+        <a th:href="@{/register}">
+            <button class="button">Register</button>
+        </a>
+
+        <form th:if="${sessionUser != null}" method="post" th:action="@{/logout}">
+            <button type="submit" class="button">Logout</button>
+        </form>
+
+        <form th:if="${sessionUser != null and sessionUser.admin == true}" th:action="@{/userlist}">
+            <button type="submit" class="button">User List</button>
+        </form>
     </div>
 </nav>
 
 <div class="section1 text">
     Beard, Beauty and... Beer?
+
 </div>
+<section class="hero-body color3">
+    <div class="container">
+        <div class="columns is-vcentered">
+
+            <div class="color3 column is-two-third">
+                <p class="title"> About us</p>
+                <p> A random quadrumvirate that was formed by experts on their field to revolutionize the culture</p>
+            </div>
+            <div class="column is-one-thirds">
+                <img src="/images/pngegg-4.png" alt="beard">
+            </div>
+        </div>
+    </div>
+
+</section>
 
 
 <div class="container">
     <p th:if="${sessionUser != null} and ${!sessionUser.admin}" th:text="'Log in as admin to write a Post'"></p>
     <div class="textbox">
-        <form th:action="@{/}" th:object="${newpost}" method="post" th:if="${sessionUser != null} and ${sessionUser.admin}">
+        <form th:action="@{/}" th:object="${newpost}" method="post"
+              th:if="${sessionUser != null} and ${sessionUser.admin}">
             <label class="label">Title</label>
             <p><input class="input" type="text" th:field="*{title}" placeholder="Text input"/></p>
             <label class="label">Message</label>
             <label>
-                <input class="input textarea" type="text" name="name" size="20" th:field="*{message}" placeholder="Text Area"/>
-                <button class="button pillen-button" type="submit">Post</button>
+                <input class="input textarea" type="text" name="name" size="20" th:field="*{message}"
+                       placeholder="Text Area"/>
+                <input type="submit" value="save">
             </label>
         </form>
     </div>
 
-    <div class="post-container" >
+
+    <div class="post-container tile is-ancestor is-vertical">
         <!--iterating through maps -  see https://attacomsian.com/blog/thymeleaf-iterate-map-list-set-array-->
-        <div th:each="entry : ${postsMap}" th:with="post=${entry.key}">
-            <h2 th:text="${post.title}">Title</h2>
-            <br>
-            <span th:text="'Created on ' + ${post.timestamp} + '  by ' + ${post.postOwner.userName}"></span>
-            <br>
-            <span th:if="${post.lastEditAt != null}" th:text="'Last modified on ' + ${post.getLastEditAt()}"> </span>
-            <br>
-            <p th:text="${post.message}">PostText</p>
-            <p><a th:href="@{'/' + ${post.postID} + '/comments'}" th:text="${entry.value} + ' comments'">
-                Comments </a></p>
-            <button class="button" th:if="${sessionUser != null} and ${sessionUser.admin}">
-                <a th:href="@{/posts/edit/{id}(id=${post.postID})}">Edit</a></button>
-            <button class="button" th:if="${sessionUser != null} and ${sessionUser.admin}">
-                <a th:href="@{/posts/delete/{postId}(postId=${post.postID})}">Delete</a></button>
-            <br>
-            <br>
+        <div th:each="entry : ${postsMap}" th:with="post=${entry.key}" class="color2 posts" >
+            <div class="tile is-vertical is-primary">
+                <h2 class="title" th:text="${post.title}">Title</h2>
+                <span th:text="'Created on ' + ${post.timestamp} + '  by' + ${post.postOwner.userName}"></span>
+                <span th:if="${post.lastEditAt != null}"
+                      th:text="'Last modified on ' + ${post.getLastEditAt()}"> </span>
+                <p class="subtitle" th:text="${post.message}">PostText</p>
+                <p><a th:href="@{'/' + ${post.postID} + '/comments'}" th:text="${entry.value} + ' comments'">
+                    Comments </a></p>
+                <button th:if="${sessionUser != null} and ${sessionUser.admin}">
+                    <a th:href="@{/posts/edit/{id}(id=${post.postID})}">Edit</a></button>
+                <button th:if="${sessionUser != null} and ${sessionUser.admin}">
+                    <a th:href="@{/posts/delete/{postId}(postId=${post.postID})}">Delete</a></button>
+            </div>
         </div>
     </div>
 </div>
+<section class="newsletter color3 columns">
+
+    <div class="column n1">
+        <div>
+            <p class="title textcolor">Newsletter</p>
+            <p class="subtitle textcolor">Stay updated and follow the latest trends
+                <i class="fa-solid fa-paper-plane"></i></p>
+        </div>
+    </div>
+    <div class="field column n2">
+        <p class="control has-icons-left has-icons-right">
+            <input class="input" type="email" placeholder="Email">
+            <span class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+    </span>
+            <span class="icon is-small is-right">
+      <i class="fas fa-check"></i>
+    </span>
+        </p>
+    </div>
+
+
+</section>
+<footer class="has-background-dark
+has-text-centered
+has-text-white
+py-6">
+    <p>© BBB-Monopol 2023, by Josi,Marc,Alina & Minh</p>
+    <div class="container">
+        <a><i class="fab fa-apple"></i></a>
+        <a><i class="fab fa-github"></i></a>
+        <a><i class="fab fa-facebook"></i></a>
+        <a><i class="fab fa-instagram"></i></a>
+        <a><i class="fab fa-twitter"></i></a>
+    </div>
+</footer>
 </body>
 </html>
