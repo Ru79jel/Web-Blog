@@ -37,6 +37,9 @@ body {
 nav {
     padding: 15px;
     animation: backcolor 5s linear infinite alternate;
+    font-size: x-large;
+    font-family: 'Gabo Drive', sans-serif;
+    font-weight: bold;
 }
 
 .section1 {
@@ -145,6 +148,10 @@ nav {
 
 a{
     color: #151519;
+}
+.gaboFont {
+    font-family: 'Gabo Drive', sans-serif;
+    font-weight: bold;
 }
 
 

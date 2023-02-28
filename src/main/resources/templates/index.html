@@ -4,6 +4,7 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" th:href="@{/style.css}">
+    <link href="https://fonts.cdnfonts.com/css/gabo-drive" rel="stylesheet">
     <script src="https://kit.fontawesome.com/876162a540.js" crossorigin="anonymous"></script>
     <title>BBB-Blog</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -59,7 +60,7 @@
     </div>
 </nav>
 
-<div class="section1 text">
+<div class="section1 text gaboFont">
     Beard, Beauty and... Beer?
 
 </div>
@@ -68,7 +69,7 @@
         <div class="columns is-vcentered">
 
             <div class="color3 column is-two-third">
-                <p class="title"> About us</p>
+                <p class="title gaboFont"> About us</p>
                 <p> A random quadrumvirate that was formed by experts on their field to revolutionize the culture</p>
             </div>
             <div class="column is-one-thirds">
@@ -100,7 +101,7 @@
         <!--iterating through maps -  see https://attacomsian.com/blog/thymeleaf-iterate-map-list-set-array-->
         <div th:each="entry : ${postsMap}" th:with="post=${entry.key}" class="color2 posts" >
             <div class="tile is-vertical is-primary">
-                <h2 class="title" th:text="${post.title}">Title</h2>
+                <h2 class="title gaboFont" th:text="${post.title}">Title</h2>
                 <span th:text="'Created on ' + ${post.timestamp} + ' by ' + ${post.postOwner.userName}"></span>
                 <span th:if="${post.lastEditAt != null}"
                       th:text="'Last modified on ' + ${post.getLastEditAt()}"> </span>
