@@ -43,8 +43,11 @@
         <!--iterating through maps -  see https://attacomsian.com/blog/thymeleaf-iterate-map-list-set-array-->
         <div th:each="entry : ${postsMap}" th:with="post=${entry.key}">
             <h2 th:text="${post.title}">Title</h2>
-            <span th:text="'Created on ' + ${post.timestamp} + '  by' + ${post.postOwner.userName}"></span>
+            <br>
+            <span th:text="'Created on ' + ${post.timestamp} + '  by ' + ${post.postOwner.userName}"></span>
+            <br>
             <span th:if="${post.lastEditAt != null}" th:text="'Last modified on ' + ${post.getLastEditAt()}"> </span>
+            <br>
             <p th:text="${post.message}">PostText</p>
             <p><a th:href="@{'/' + ${post.postID} + '/comments'}" th:text="${entry.value} + ' comments'">
                 Comments </a></p>
@@ -52,6 +55,8 @@
                 <a th:href="@{/posts/edit/{id}(id=${post.postID})}">Edit</a></button>
             <button th:if="${sessionUser != null} and ${sessionUser.admin}">
                 <a th:href="@{/posts/delete/{postId}(postId=${post.postID})}">Delete</a></button>
+            <br>
+            <br>
         </div>
     </div>
 </div>
