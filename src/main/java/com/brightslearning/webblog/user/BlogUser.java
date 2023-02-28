@@ -16,6 +16,8 @@ public class BlogUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long userID;
     private String userName;
+
+
     private String password;
     private boolean isAdmin;
     @OneToMany(mappedBy = "postOwner")
