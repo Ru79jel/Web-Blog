@@ -25,6 +25,28 @@ nav {
     padding: 15px;
     animation: backcolor 7s linear infinite alternate;
 }
+
+.section1{
+    width: 100%;
+    min-height: 66vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+
+
+.text {
+
+    font-size: 25px;
+    font-family: "Apple Symbols";
+    font-weight: bolder;
+    color: white;
+    text-shadow: 5px 5px 10px black;
+
+}
+
 @keyframes backcolor {
     0% {
         background-color: #344E41;
@@ -41,4 +63,10 @@ nav {
     100% {
         background-color: #DAD7CD;
     }
+}
+
+.textbox {
+    margin-left: 5%;
+    width: 25vw;
+
 }

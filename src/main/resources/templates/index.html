@@ -38,20 +38,28 @@
 </div>
 </nav>
 
+<div class="section1 text">
+    Beard, Beauty and... Beer?
+
+</div>
+
 
 <p th:if="${sessionUser != null} and ${!sessionUser.admin}" th:text="'Log in as admin to write a Post'"></p>
-
+<div class="textbox">
 <form th:action="@{/}" th:object="${newpost}" method="post" th:if="${sessionUser != null} and ${sessionUser.admin}">
-    <p><input type="text" th:field="*{title}" placeholder="Titel"/></p>
+    <label class="label">Title</label>
+    <p><input class="input" type="text" th:field="*{title}" placeholder="Text input"/></p>
+    <label class="label">Message</label>
     <label>
-        <input type="text" name="name" size="20" th:field="*{message}" placeholder="New Post"/>
+        <input class="input textarea" type="text" name="name" size="20" th:field="*{message}" placeholder="Text Area"/>
         <input type="submit" value="save">
     </label>
 </form>
+</div>
 
 <div class="container">
 
-    <div class="post-container">
+    <div class="post-container" >
         <!--iterating through maps -  see https://attacomsian.com/blog/thymeleaf-iterate-map-list-set-array-->
         <div th:each="entry : ${postsMap}" th:with="post=${entry.key}">
             <h2 th:text="${post.title}">Title</h2>
