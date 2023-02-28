@@ -83,3 +83,25 @@ nav {
 .navbar-item button {
     background-color: #A3B18A;
 }
+
+.button {
+    font-weight: bold;
+    padding: 1em 2em;
+    cursor: pointer;
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+    align-content: center;
+
+}
+
+.pillen-button {
+    background-color: hsl(219, 90%, 44%);
+    color: white;
+    border: none;
+    border-radius: 1.5em/50%;
+}
+.pillen-button:hover {
+    background-color: hsl(219, 90%, 30%);
+}
+
