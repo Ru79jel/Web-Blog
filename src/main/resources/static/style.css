@@ -21,4 +21,55 @@
 .textcolor {
     color: #DAD7CD;
 }
+nav {
+    padding: 15px;
+    animation: backcolor 7s linear infinite alternate;
+}
 
+.section1{
+    width: 100%;
+    min-height: 66vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: url("https://images.unsplash.com/photo-1527443631444-cfeaa17b56fe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1948&q=80");
+    background-size: cover;
+}
+
+
+
+.text {
+
+    font-size: 10vh;
+    font-family: "Apple Symbols";
+    font-weight: bolder;
+    color: white;
+    text-shadow: 5px 5px 10px black;
+
+}
+
+@keyframes backcolor {
+    0% {
+        background-color: #344E41;
+    }
+    25% {
+        background-color: #3A5A40;
+    }
+    50% {
+        background-color: #588157;
+    }
+    75% {
+        background-color: #A3B18A;
+    }
+    100% {
+        background-color: #DAD7CD;
+    }
+}
+
+.textbox {
+
+    width: 25vw;
+    padding-bottom: 25px;
+
+}
