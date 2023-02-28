@@ -45,7 +45,7 @@
             <form  class = "navbar-item"  th:if="${sessionUser == null}" th:action="@{/login}">
                 <button type="submit" class="button">Login</button>
             </form>
-            <form class = "navbar-item"  method="post" th:action="@{/register}">
+            <form class = "navbar-item" th:action="@{/register}">
                 <button type="submit" class="button">Register</button>
             </form>
             <form class = "navbar-item" th:if="${sessionUser != null}" method="post" th:action="@{/logout}">
