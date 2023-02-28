@@ -61,8 +61,10 @@
     </div>
 </nav>
 
-<div class="section1 text gaboFont">
-    Beard, Beauty and... Beer?
+<div class="section1 ">
+    <div class="text gaboFont">
+        Beard, Beauty and... Beer?
+    </div>
 
 </div>
 <section class="hero-body color3">
@@ -70,7 +72,10 @@
         <div class="columns is-vcentered">
 
             <div class="color3 column is-two-third">
-                <p class="title gaboFont"> About us</p>
+                <p1 class="title gaboFont "> About us</p1>
+                <span class="icon">
+                <i class="fa-light fa-mustache"></i>
+                    </span>
                 <p> A random quadrumvirate that was formed by experts on their field to revolutionize the culture</p>
             </div>
             <div class="column is-one-thirds">
@@ -105,8 +110,8 @@
 <div class="column">
 <div class="post-container tile is-ancestor is-vertical">
     <!--iterating through maps -  see https://attacomsian.com/blog/thymeleaf-iterate-map-list-set-array-->
-    <div th:each="entry : ${postsMap}" th:with="post=${entry.key}" class="color2 posts">
-        <div class="tile is-vertical is-primary">
+    <div th:each="entry : ${postsMap}" th:with="post=${entry.key}" class="color2 posts box">
+        <div class="tile is-vertical">
             <h2 class="title gaboFont" th:text="${post.title}">Title</h2>
             <span th:text="'Created on ' + ${post.timestamp} + ' by ' + ${post.postOwner.userName}"></span>
             <span th:if="${post.lastEditAt != null}"

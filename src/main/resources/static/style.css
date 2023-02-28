@@ -9,6 +9,9 @@ body {
     background-color: #DAD7CD;
 
 }
+body, html {
+    height: 100%;
+}
 
 .color1 {
     background-color: #DAD7CD;
@@ -43,7 +46,7 @@ nav {
 }
 
 .section1 {
-    min-height: 50vh;
+    min-height: 65vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,6 +58,10 @@ nav {
     margin-top: 2%;
     margin-bottom: 3%;
     border-radius: 50px;
+    background-attachment: fixed;
+}
+.section1 div{
+    transform: translateY(1px);
 }
 
 
@@ -145,7 +152,7 @@ nav {
     color: #A3B18A;
 }
 
-.posts {
+.posts, comments {
     margin: 10px;
     padding: 10px;
     border-radius: 11px;
@@ -162,5 +169,11 @@ a{
     background-color: #DAD7CD;
     margin-left: 10px;
 }
+
+.comments {
+
+}
+
+
 
 

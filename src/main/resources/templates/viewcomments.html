@@ -10,10 +10,10 @@
     <title>Comments</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
 // Check for click events on the navbar burger icon
-            $(".navbar-burger").click(function() {
+            $(".navbar-burger").click(function () {
 
 // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
                 $(".navbar-burger").toggleClass("is-active");
@@ -27,7 +27,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item">
-           <img src="/images/pngegg-4.png" alt="Logo">
+            <img src="/images/pngegg-4.png" alt="Logo">
         </a>
         <a class="navbar-item" th:href="@{/}">
             Home
@@ -45,34 +45,42 @@
     <div class="navbar-menu">
         <div class="navbar-end">
 
-            <form  class = "navbar-item"  th:if="${sessionUser == null}" th:action="@{/login}">
+            <form class="navbar-item" th:if="${sessionUser == null}" th:action="@{/login}">
                 <button type="submit" class="button">Login</button>
             </form>
-            <form class = "navbar-item" th:action="@{/register}">
+            <form class="navbar-item" th:action="@{/register}">
                 <button type="submit" class="button">Register</button>
             </form>
-            <form class = "navbar-item" th:if="${sessionUser != null}" method="post" th:action="@{/logout}">
+            <form class="navbar-item" th:if="${sessionUser != null}" method="post" th:action="@{/logout}">
                 <button type="submit" class="button">Logout</button>
             </form>
-            <form class = "navbar-item" th:if="${sessionUser != null and sessionUser.admin == true}" th:action="@{/userlist}">
-            <button type="submit" class="button">User List</button>
-        </form>
+            <form class="navbar-item" th:if="${sessionUser != null and sessionUser.admin == true}"
+                  th:action="@{/userlist}">
+                <button type="submit" class="button">User List</button>
+            </form>
         </div>
     </div>
 </nav>
-
+<h1 th:text="${post.title}" class="title gaboFont"></h1>
 <h5 th:text="'Created on ' + ${post.timestamp} + ' by ' + ${post.postOwner.userName}"></h5>
 <br>
 <p th:text="${post.message}">PostText</p>
 <br>
-<div th:each="comment : ${comments}">
-    <br>
-    <span th:text="'Created on ' + ${comment.timestamp} + ' by ' + ${comment.blogUser.userName}"></span>
-    <br>
-    <p th:text="${comment.content}">Kommentare</p>
-    <button class="button" th:if="${sessionUser != null} and (${sessionUser.equals(comment.blogUser)} or ${sessionUser.admin})">
-        <a th:href="@{/comments/delete/{id}(id=${comment.id})}">Delete</a></button>
 
+<div class="container">
+    <div th:each="comment : ${comments}" class=" color2 box message">
+        <div class="message-header">
+            <span th:text="'Created on ' + ${comment.timestamp} + ' by ' + ${comment.blogUser.userName}"></span>
+            <button class="delete" aria-label="delete"></button>
+        </div>
+        <div class="message-body">
+        <p th:text="${comment.content}">Kommentare</p>
+        </div>
+        <button class="button"
+                th:if="${sessionUser != null} and (${sessionUser.equals(comment.blogUser)} or ${sessionUser.admin})">
+            <a th:href="@{/comments/delete/{id}(id=${comment.id})}">Delete</a></button>
+
+    </div>
 </div>
 
 <hr>
@@ -82,7 +90,7 @@
     <label>
         <input style="padding: 1em 2em; cursor: text; display: flex; margin: auto; justify-content: space-between;
     align-content: center;" type="text" name="name" size="20" th:field="*{content}" placeholder="New Comment"/>
-        <button class="button pillen-button" type="submit" >Comment</button>
+        <button class="button pillen-button" type="submit">Comment</button>
     </label>
 </form>
 <footer class="has-background-dark
