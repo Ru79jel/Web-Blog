@@ -2,15 +2,46 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-    <title>Comments</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" th:href="@{style.css}">
+    <title>Comments</title>
+    <style>
+        nav{
+            background-color: #3A5A40;
+        }
+    </style>
 </head>
 <body>
-<a th:href="@{/}">
-    <button>Home</button>
-</a>
-<hr>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-start">
+        <a class="navbar-item">
+            Home
+        </a>
+
+        <a class="navbar-item">
+            Documentation
+        </a>
+
+    </div>
+
+    <div class="navbar-end">
+        <form th:if="${sessionUser == null}" th:action="@{/login}">
+            <button type="submit" class="button">Login</button>
+        </form>
+
+        <a th:href="@{/register}">
+            <button class="button">Register</button>
+        </a>
+
+        <form th:if="${sessionUser != null}" method="post" th:action="@{/logout}">
+            <button type="submit" class="button">Logout</button>
+        </form>
+
+        <form th:if="${sessionUser != null and sessionUser.admin == true}" th:action="@{/userlist}">
+            <button type="submit" class="button">User List</button>
+        </form>
+    </div>
+</nav>
 
 <span th:text="'Created on ' + ${post.timestamp} + ' by ' + ${post.postOwner.userName}"></span>
 
