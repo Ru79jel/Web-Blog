@@ -12,14 +12,13 @@
 </a>
 <hr>
 
-<span th:text="'Created on ' + ${post.timestamp}">Created At</span>
-<span th:text="'Created by ' + ${post.postOwner.userName}">Created At</span>
+<span th:text="'Created on ' + ${post.timestamp} + ' by ' + ${post.postOwner.userName}"></span>
+
 
 <p th:text="${post.message}">PostText</p>
 
 <div th:each="comment : ${comments}">
-    <span th:text="'Created by ' + ${comment.blogUser.userName}">Created At</span>
-    <span th:text="'Created on ' + ${comment.timestamp}">Created At</span>
+    <span th:text="'Created on ' + ${comment.timestamp} + ' by ' + ${comment.blogUser.userName}"></span>
     <p th:text="${comment.content}">Kommentare</p>
     <button th:if="${sessionUser != null} and (${sessionUser.equals(comment.blogUser)} or ${sessionUser.admin})">
         <a th:href="@{/comments/delete/{id}(id=${comment.id})}">Delete</a></button>
