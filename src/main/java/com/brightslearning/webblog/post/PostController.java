@@ -30,11 +30,6 @@ public class PostController {
 
     @GetMapping("/")
     public String showBlogPosts(Model model, @ModelAttribute("sessionUser") BlogUser sessionUser) {
-
-//        System.out.println(this.postRepo.findByOrderByTimestampDesc().toString());
-        // Why do posts not contain the full "deep" copy of every element? In larger scenarios this would lead to an absolute
-        // messy chaos! Anyway: It should be doable somehow - so this is just a late-night workaround!
-
         // get all posts
         List<BlogPost> posts = this.postRepo.findByOrderByTimestampDesc();
 

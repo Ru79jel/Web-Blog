@@ -35,20 +35,14 @@
     <div class="post-container">
         <!--iterating through maps -  see https://attacomsian.com/blog/thymeleaf-iterate-map-list-set-array-->
         <div th:each="entry : ${postsMap}" th:with="post=${entry.key}">
-            <h2><a th:href="@{'/' + ${post.postID} + '/comments'}">
-                <h5 th:text="${post.title}">Title</h5>
-            </a></h2>
-                <h6 th:text="${entry.value} + ' comments.'">Comments</h6>
+            <h2 th:text="${post.title}">Title</h2>
             <span th:text="'Created on ' + ${post.timestamp}">Created At</span>
             <span th:if="${post.lastEditAt != null}" th:text="'Last modified on ' + ${post.getLastEditAt()}"> </span>
             <p th:text="'Created by ' + ${post.postOwner.userName}">Title</p>
             <p th:text="${post.comments.size() + 'Kommentare'}"></p>
-            <p th:text="${post.message}">PostText</p> <br>
-            <ul>
-                <li th:each="kommentar : ${post.getComments()}">
-                    <span th:text="${kommentar.content}"></span>
-                </li>
-            </ul>
+            <p th:text="${post.message}">PostText</p>
+            <p><a th:href="@{'/' + ${post.postID} + '/comments'}" th:text="${entry.value} + ' comments'">
+                Comments </a></p>
             <button th:if="${sessionUser != null} and ${sessionUser.admin}">
                 <a th:href="@{/posts/edit/{id}(id=${post.postID})}">Edit</a></button>
             <button th:if="${sessionUser != null} and ${sessionUser.admin}">
