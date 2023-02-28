@@ -3,6 +3,7 @@ package com.brightslearning.webblog.post;
 import com.brightslearning.webblog.comment.BlogComment;
 import com.brightslearning.webblog.comment.CommentRepo;
 import com.brightslearning.webblog.user.BlogUser;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,8 +96,10 @@ public class PostController {
     }
 
     @GetMapping("/posts/delete/{postId}")
+    @Transactional
     public String deletePost(@ModelAttribute("sessionUser") BlogUser sessionUser, @PathVariable long postId) {
         if (sessionUser.isAdmin()) {
+            this.commentRepo.deleteBlogCommentsByBlogPostPostID(postId);
             this.postRepo.deleteById(postId);
         }
         return "redirect:/";

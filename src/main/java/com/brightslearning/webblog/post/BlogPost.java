@@ -20,7 +20,7 @@ public class BlogPost {
     private LocalDate lastEditAt;
     @ManyToOne
     private BlogUser postOwner;
-    @OneToMany(mappedBy = "blogPost", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "blogPost")
     private Set<BlogComment> comments;
 
     public BlogPost() {
