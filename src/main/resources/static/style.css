@@ -203,6 +203,12 @@ a{
     flex:1.5;
     opacity: 1;
 }
+.postbox {
+    background: url("https://images.unsplash.com/photo-1609315775378-fc9679b1786a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80");
+    background-size: cover;
+    background-attachment: fixed;
+    margin-bottom: 10px;
+}
 
 
 
