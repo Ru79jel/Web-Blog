@@ -21,4 +21,24 @@
 .textcolor {
     color: #DAD7CD;
 }
-
+nav {
+    padding: 15px;
+    animation: backcolor 7s linear infinite alternate;
+}
+@keyframes backcolor {
+    0% {
+        background-color: #344E41;
+    }
+    25% {
+        background-color: #3A5A40;
+    }
+    50% {
+        background-color: #588157;
+    }
+    75% {
+        background-color: #A3B18A;
+    }
+    100% {
+        background-color: #DAD7CD;
+    }
+}
