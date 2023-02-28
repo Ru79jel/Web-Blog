@@ -56,13 +56,11 @@ nav {
 
 
 .text {
-
     font-size: 10vh;
-    font-family: "Apple Symbols";
+    font-family: "Helvetica", sans-serif;
     font-weight: bolder;
     color: white;
     text-shadow: 5px 5px 10px black;
-
 }
 
 @keyframes backcolor {
