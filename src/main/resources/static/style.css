@@ -190,6 +190,19 @@ a{
     color: #fff;
     transform: translate(15px,15px);
 }
+.flexbox {
+    display: flex;
+}
+.flexcard {
+    border-radius: 15px;
+    flex: 1;
+    transition: 0.2s all ease;
+    opacity: 0.3;
+}
+.flexcard:hover {
+    flex:1.5;
+    opacity: 1;
+}
 
 
 
