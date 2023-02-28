@@ -81,7 +81,6 @@
 
 
 <div class="container">
-    <p th:if="${sessionUser != null} and ${!sessionUser.admin}" th:text="'Log in as admin to write a Post'"></p>
     <div class="textbox">
         <form th:action="@{/}" th:object="${newpost}" method="post"
               th:if="${sessionUser != null} and ${sessionUser.admin}">
@@ -102,7 +101,7 @@
         <div th:each="entry : ${postsMap}" th:with="post=${entry.key}" class="color2 posts" >
             <div class="tile is-vertical is-primary">
                 <h2 class="title" th:text="${post.title}">Title</h2>
-                <span th:text="'Created on ' + ${post.timestamp} + '  by' + ${post.postOwner.userName}"></span>
+                <span th:text="'Created on ' + ${post.timestamp} + ' by ' + ${post.postOwner.userName}"></span>
                 <span th:if="${post.lastEditAt != null}"
                       th:text="'Last modified on ' + ${post.getLastEditAt()}"> </span>
                 <p class="subtitle" th:text="${post.message}">PostText</p>
