@@ -130,14 +130,19 @@ nav {
     margin: auto;
     justify-content: space-between;
     align-content: center;
-
 }
-
+.b-marge {
+    margin-top: 1em;
+}
 .pillen-button {
-    background-color: hsl(219, 90%, 44%);
+    background-color: #7d2f13;
     color: white;
     border: none;
     border-radius: 1.5em/50%;
+    margin-top: 1em;
+}
+.pillen-butten:hover {
+    color: #A3B18A;
 }
 
 .posts {

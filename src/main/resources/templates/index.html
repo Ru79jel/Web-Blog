@@ -110,7 +110,7 @@
                     Comments </a></p>
                 <button class="button" th:if="${sessionUser != null} and ${sessionUser.admin}">
                     <a th:href="@{/posts/edit/{id}(id=${post.postID})}">Edit</a></button>
-                <button class="button" th:if="${sessionUser != null} and ${sessionUser.admin}">
+                <button class="button b-marge" th:if="${sessionUser != null} and ${sessionUser.admin}">
                     <a th:href="@{/posts/delete/{postId}(postId=${post.postID})}">Delete</a></button>
             </div>
         </div>
