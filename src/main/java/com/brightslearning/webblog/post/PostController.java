@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +35,7 @@ public class PostController {
         List<BlogPost> posts = this.postRepo.findByOrderByTimestampDesc();
 
         // determine the number of comments for each post and save them in a Map
-        Map<BlogPost, Integer> countedBlogPosts = new HashMap<>();
+        Map<BlogPost, Integer> countedBlogPosts = new LinkedHashMap<>();
         for (BlogPost p : posts) {
             List<BlogComment> comments = this.commentRepo.findByBlogPostPostIDOrderByTimestampAsc(p.getPostID());
             countedBlogPosts.put(p, comments.size());
@@ -56,7 +57,7 @@ public class PostController {
         List<BlogPost> posts = this.postRepo.findByOrderByTimestampDesc();
 
         // determine the number of comments for each post and save them in a Map
-        Map<BlogPost, Integer> countedBlogPosts = new HashMap<>();
+        Map<BlogPost, Integer> countedBlogPosts = new LinkedHashMap<>();
         for (BlogPost p : posts) {
             List<BlogComment> comments = this.commentRepo.findByBlogPostPostIDOrderByTimestampAsc(p.getPostID());
             countedBlogPosts.put(p, comments.size());
