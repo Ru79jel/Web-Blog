@@ -33,12 +33,13 @@ body {
 .textcolor {
     color: #DAD7CD;
 }
+
 nav {
     padding: 15px;
-    animation: backcolor 7s linear infinite alternate;
+    animation: backcolor 5s linear infinite alternate;
 }
 
-.section1{
+.section1 {
     min-height: 50vh;
     display: flex;
     align-items: center;
@@ -54,7 +55,6 @@ nav {
 }
 
 
-
 .text {
     font-size: 10vh;
     font-family: "Helvetica", sans-serif;
@@ -64,16 +64,11 @@ nav {
 }
 
 @keyframes backcolor {
+
     0% {
-        background-color: #344E41;
-    }
-    25% {
-        background-color: #3A5A40;
-    }
-    50% {
         background-color: #588157;
     }
-    75% {
+    50% {
         background-color: #A3B18A;
     }
     100% {
@@ -95,6 +90,7 @@ nav {
         padding: 0.5rem 0;
     }
 }
+
 .newsletter {
     margin: 2%;
     border-radius: 20px;
@@ -109,12 +105,14 @@ nav {
     display: flex;
     align-items: center;
 }
+
 .n2 {
     display: flex;
     align-items: center;
     justify-content: center;
 
 }
+
 .navbar-item button {
     background-color: #A3B18A;
 }
@@ -136,11 +134,13 @@ nav {
     border: none;
     border-radius: 1.5em/50%;
 }
+
 .posts {
     margin: 10px;
     padding: 10px;
     border-radius: 11px;
 }
+
 .pillen-button:hover {
     background-color: hsl(219, 90%, 30%);
 }
