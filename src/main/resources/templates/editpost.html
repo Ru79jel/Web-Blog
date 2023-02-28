@@ -3,10 +3,61 @@
 <head>
     <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" th:href="@{style.css}">
+    <link rel="stylesheet" th:href="@{/style.css}">
     <title>Edit Comment</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+// Check for click events on the navbar burger icon
+            $(".navbar-burger").click(function() {
+
+// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                $(".navbar-burger").toggleClass("is-active");
+                $(".navbar-menu").toggleClass("is-active");
+
+            });
+        });
+    </script>
 </head>
 <body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item">
+            <img src="/images/pngegg-4.png" alt="Logo">
+        </a>
+        <a class="navbar-item" th:href="@{/}">
+            Home
+        </a>
+        <a class="navbar-item" th:href="@{/aboutus}">
+            About us
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div class="navbar-menu">
+        <div class="navbar-end">
+
+            <form  class = "navbar-item"  th:if="${sessionUser == null}" th:action="@{/login}">
+                <button type="submit" class="button">Login</button>
+            </form>
+            <form class = "navbar-item"  th:action="@{/register}">
+                <button type="submit" class="button">Register</button>
+            </form>
+            <form class = "navbar-item" th:if="${sessionUser != null}" method="post" th:action="@{/logout}">
+                <button type="submit" class="button">Logout</button>
+            </form>
+            <form class = "navbar-item" th:if="${sessionUser != null and sessionUser.admin == true}" th:action="@{/userlist}">
+                <button type="submit" class="button">User List</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
 <section class="hero is-fullheight">
     <div class="hero-body color2">
         <div class="container">
