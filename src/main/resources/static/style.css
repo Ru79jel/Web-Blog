@@ -38,7 +38,6 @@ nav {
 }
 
 
-
 .text {
 
     font-size: 10vh;
@@ -71,5 +70,16 @@ nav {
 
     width: 25vw;
     padding-bottom: 25px;
+}
 
+@media screen and (max-width: 1023px) {
+    .navbar-menu {
+        background-color: transparent;
+        box-shadow: 0 8px 16px rgb(10 10 10 / 10%);
+        padding: 0.5rem 0;
+    }
+}
+
+.navbar-item button {
+    background-color: #A3B18A;
 }
