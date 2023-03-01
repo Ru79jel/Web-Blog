@@ -70,7 +70,7 @@
 <div class="container">
     <div th:each="comment : ${comments}" class=" color2 box message">
         <div class="message-header">
-            <span th:text="'Created on ' + ${comment.timestamp} + ' by ' + ${comment.blogUser.userName}"></span>
+            <h5 th:text="'Created on ' + ${comment.timestamp} + ' by ' + ${comment.blogUser.userName}"></h5>
             <form th:action="@{/comments/delete/{id}(id=${comment.id})}"><button class="delete" aria-label="delete"
                                     th:if="${sessionUser != null} and (${sessionUser.equals(comment.blogUser)} or ${sessionUser.admin})">
                 </button> </form>
