@@ -96,11 +96,11 @@
                   th:if="${sessionUser != null} and ${sessionUser.admin}">
                 <div>
                     <label class="label">Title</label>
-                    <input class="input color1" type="text" th:field="*{title}" placeholder="Text input"/>
+                    <input class="input color1" type="text" th:field="*{title}" placeholder="Title"/>
                     <label class="label">Message</label>
                     <label>
                         <input class="input color1 textarea" type="text" name="name" size="20" th:field="*{message}"
-                               placeholder="Text Area"/>
+                               placeholder="Enter new post here"/>
                         <button class="button pillen-button" type="submit">Post</button>
                     </label>
                 </div>
