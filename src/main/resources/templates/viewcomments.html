@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/gabo-drive" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <script src="https://kit.fontawesome.com/876162a540.js" crossorigin="anonymous"></script>
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/876162a540.js"></script>
 
     <title>Comments</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -24,10 +24,10 @@
     </script>
 </head>
 <body>
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav aria-label="main navigation" class="navbar" role="navigation">
     <div class="navbar-brand">
         <a class="navbar-item">
-            <img src="/images/pngegg-4.png" alt="Logo">
+            <img alt="Logo" src="/images/pngegg-4.png">
         </a>
         <a class="navbar-item" th:href="@{/}">
             Home
@@ -35,7 +35,7 @@
         <a class="navbar-item" th:href="@{/aboutus}">
             About us
         </a>
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <a aria-expanded="false" aria-label="menu" class="navbar-burger" data-target="navbarBasicExample" role="button">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -45,35 +45,39 @@
     <div class="navbar-menu">
         <div class="navbar-end">
 
-            <form class="navbar-item" th:if="${sessionUser == null}" th:action="@{/login}">
-                <button type="submit" class="button">Login</button>
+            <form class="navbar-item" th:action="@{/login}" th:if="${sessionUser == null}">
+                <button class="button" type="submit">Login</button>
             </form>
             <form class="navbar-item" th:action="@{/register}">
-                <button type="submit" class="button">Register</button>
+                <button class="button" type="submit">Register</button>
             </form>
-            <form class="navbar-item" th:if="${sessionUser != null}" method="post" th:action="@{/logout}">
-                <button type="submit" class="button">Logout</button>
+            <form class="navbar-item" method="post" th:action="@{/logout}" th:if="${sessionUser != null}">
+                <button class="button" type="submit">Logout</button>
             </form>
-            <form class="navbar-item" th:if="${sessionUser != null and sessionUser.admin == true}"
-                  th:action="@{/userlist}">
-                <button type="submit" class="button">User List</button>
+            <form class="navbar-item" th:action="@{/userlist}"
+                  th:if="${sessionUser != null and sessionUser.admin == true}">
+                <button class="button" type="submit">User List</button>
             </form>
         </div>
     </div>
 </nav>
-<h1 th:text="${post.title}" class="title gaboFont"></h1>
-<h5 th:text="'Created on ' + ${post.timestamp} + ' by ' + ${post.postOwner.userName}"></h5>
-<br>
-<p th:text="${post.message}">PostText</p>
-<br>
+<div class="postcon container">
+    <h1 class="title gaboFont" th:text="${post.title}"></h1>
+    <h5 th:text="'Created on ' + ${post.timestamp} + ' by ' + ${post.postOwner.userName}"></h5>
+    <br>
+    <p th:text="${post.message}">PostText</p>
+
+</div>
 
 <div class="container">
-    <div th:each="comment : ${comments}" class=" color2 box message">
+    <div class=" color2 box message" th:each="comment : ${comments}">
         <div class="message-header">
             <span th:text="'Created on ' + ${comment.timestamp} + ' by ' + ${comment.blogUser.userName}"></span>
-            <form th:action="@{/comments/delete/{id}(id=${comment.id})}"><button class="delete" aria-label="delete"
-                                    th:if="${sessionUser != null} and (${sessionUser.equals(comment.blogUser)} or ${sessionUser.admin})">
-                </button> </form>
+            <form th:action="@{/comments/delete/{id}(id=${comment.id})}">
+                <button aria-label="delete" class="delete"
+                        th:if="${sessionUser != null} and (${sessionUser.equals(comment.blogUser)} or ${sessionUser.admin})">
+                </button>
+            </form>
         </div>
         <div class="message-body">
             <p th:text="${comment.content}">Kommentare</p>
@@ -83,12 +87,12 @@
 
 <hr>
 <p th:if="${sessionUser == null}" th:text="'Log in to write a comment'"></p>
-<form th:action="@{/{postId}/comments(postId=${post.postID})}" method="post" th:object="${newcomment}"
-      th:if="${sessionUser != null}">
+<form method="post" th:action="@{/{postId}/comments(postId=${post.postID})}" th:if="${sessionUser != null}"
+      th:object="${newcomment}">
     <label>
-        <input style="padding: 1em 2em; cursor: text; display: flex; margin: auto; justify-content: space-between;
-    align-content: center;" type="text" name="name" size="20" th:field="*{content}" placeholder="New Comment"/>
-        <button style="margin-bottom: 1em" class="button pillen-button" type="submit" >Comment</button>
+        <input name="name" placeholder="New Comment" size="20" style="padding: 1em 2em; cursor: text; display: flex; margin: auto; justify-content: space-between;
+    align-content: center;" th:field="*{content}" type="text"/>
+        <button class="button pillen-button" style="margin-bottom: 1em" type="submit">Comment</button>
     </label>
 </form>
 <footer class="has-background-dark
