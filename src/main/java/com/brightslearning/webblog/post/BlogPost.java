@@ -26,4 +26,5 @@ public class BlogPost {
     public BlogPost() {
         this.timestamp = LocalDate.now();
     }
+
 }
