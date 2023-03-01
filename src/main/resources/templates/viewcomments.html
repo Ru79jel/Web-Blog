@@ -61,21 +61,25 @@
         </div>
     </div>
 </nav>
-<div class="postcon container">
-    <h1 class="title gaboFont" th:text="${post.title}"></h1>
-    <h5 th:text="'Created on ' + ${post.timestamp} + ' by ' + ${post.postOwner.userName}"></h5>
-    <br>
-    <p th:text="${post.message}">PostText</p>
+<div class="concon">
+    <div class="postcon container">
+        <h1 class="title gaboFont" th:text="${post.title}"></h1>
+        <h5 th:text="'Created on ' + ${post.timestamp} + ' by ' + ${post.postOwner.userName}"></h5>
+        <br>
+        <p th:text="${post.message}">PostText</p>
 
+    </div>
 </div>
 
 <div class="container">
     <div class=" color2 box message" th:each="comment : ${comments}">
         <div class="message-header">
             <h5 th:text="'Created on ' + ${comment.timestamp} + ' by ' + ${comment.blogUser.userName}"></h5>
-            <form th:action="@{/comments/delete/{id}(id=${comment.id})}"><button class="delete" aria-label="delete"
-                                    th:if="${sessionUser != null} and (${sessionUser.equals(comment.blogUser)} or ${sessionUser.admin})">
-                </button> </form>
+            <form th:action="@{/comments/delete/{id}(id=${comment.id})}">
+                <button class="delete" aria-label="delete"
+                        th:if="${sessionUser != null} and (${sessionUser.equals(comment.blogUser)} or ${sessionUser.admin})">
+                </button>
+            </form>
         </div>
         <div class="message-body">
             <p th:text="${comment.content}">Kommentare</p>

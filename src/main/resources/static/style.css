@@ -224,6 +224,10 @@ a{
     padding: 25px;
 
 }
-
+.concon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
