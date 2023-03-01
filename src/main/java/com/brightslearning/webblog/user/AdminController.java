@@ -1,4 +1,4 @@
-package com.brightslearning.webblog;
+package com.brightslearning.webblog.user;
 
 import com.brightslearning.webblog.user.BlogUser;
 import com.brightslearning.webblog.user.UserRepo;

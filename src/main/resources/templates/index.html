@@ -120,8 +120,13 @@
             <h5 th:if="${post.lastEditAt != null}"
                   th:text="'Last modified on ' + ${post.getLastEditAt()}"> </h5>
             <p class="subtitle" th:text="${post.message}">PostText</p>
-            <p><a th:href="@{'/' + ${post.postID} + '/comments'}" th:text="${entry.value} + ' comments'">
-                Comments </a></p>
+            <p>
+                <a th:href="@{'/' + ${post.postID} + '/comments'}">
+                    <i class="fa-sharp fa-solid fa-comment"></i>
+                </a>
+                <a th:href="@{'/' + ${post.postID} + '/comments'}" th:text="${entry.value} + ' comments'">
+                    Comments </a>
+            </p>
             <button class="button" th:if="${sessionUser != null} and ${sessionUser.admin}">
                 <a th:href="@{/posts/edit/{id}(id=${post.postID})}">Edit</a></button>
             <button class="button b-marge" th:if="${sessionUser != null} and ${sessionUser.admin}">
