@@ -9,10 +9,10 @@
     <link rel="stylesheet" th:href="@{/style.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
 // Check for click events on the navbar burger icon
-            $(".navbar-burger").click(function() {
+            $(".navbar-burger").click(function () {
 
 // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
                 $(".navbar-burger").toggleClass("is-active");
@@ -44,16 +44,17 @@
     <div class="navbar-menu">
         <div class="navbar-end">
 
-            <form  class = "navbar-item"  th:if="${sessionUser == null}" th:action="@{/login}">
+            <form class="navbar-item" th:if="${sessionUser == null}" th:action="@{/login}">
                 <button type="submit" class="button">Login</button>
             </form>
-            <form class = "navbar-item"  th:action="@{/register}">
+            <form class="navbar-item" th:action="@{/register}">
                 <button type="submit" class="button">Register</button>
             </form>
-            <form class = "navbar-item" th:if="${sessionUser != null}" method="post" th:action="@{/logout}">
+            <form class="navbar-item" th:if="${sessionUser != null}" method="post" th:action="@{/logout}">
                 <button type="submit" class="button">Logout</button>
             </form>
-            <form class = "navbar-item" th:if="${sessionUser != null and sessionUser.admin == true}" th:action="@{/userlist}">
+            <form class="navbar-item" th:if="${sessionUser != null and sessionUser.admin == true}"
+                  th:action="@{/userlist}">
                 <button type="submit" class="button">User List</button>
             </form>
         </div>
@@ -74,12 +75,13 @@
                         <div class="media">
                             <div class="media-content">
                                 <p class="title is-4 gaboFont">Josi the Beard Scientist</p>
-                                <p class="subtitle is-6">@sciencejosi</p>
-                                <a href="https://github.com/Ru79jel"><i class="fab fa-github"></i></a>
+                                <p class="subtitle is-6">@sciencejosi <a href="https://github.com/Ru79jel"><i
+                                        class="fab fa-github"></i></a></p>
+
                             </div>
                         </div>
                         <div class="content">
-                           With her thick, bushy beard and sharp scientific mind,
+                            With her thick, bushy beard and sharp scientific mind,
                             Josi is a force to be reckoned within the world of facial hair.
                             She spends his days testing and analyzing different grooming products,
                             always on the lookout for the perfect formula to achieve the ultimate beard.
@@ -97,15 +99,17 @@
                         <div class="media">
                             <div class="media-content">
                                 <p class="title is-4 gaboFont"> Minh the Cosmetic Guru</p>
-                                <p class="subtitle is-6">@guruminh</p>
-                                <a href="https://github.com/yungminox"><i class="fab fa-github"></i></a>
+                                <p class="subtitle is-6">@guruminh <a href="https://github.com/yungminox"><i
+                                        class="fab fa-github"></i></a></p>
+
                             </div>
                         </div>
                         <div class="content">
                             When it comes to skincare and cosmetics, Minh is the ultimate expert.
                             With his encyclopedic knowledge of ingredients and formulations, he's able to create custom
                             beauty
-                            routines for his clients that leave them looking and feeling their best. Whether you need a new
+                            routines for his clients that leave them looking and feeling their best. Whether you need a
+                            new
                             moisturizer or a full-on skincare overhaul, Minh has you covered.
                             <a href="#">#cosmetics</a> <a href="#">#beauty</a>
                         </div>
@@ -121,13 +125,14 @@
                         <div class="media">
                             <div class="media-content">
                                 <p class="title is-4 gaboFont"> Alina the Beer Brewer</p>
-                                <p class="subtitle is-6">@beeralina</p>
-                                <a><i class="fab fa-github"></i></a>
+                                <p class="subtitle is-6">@beeralina <a><i class="fab fa-github"></i></a></p>
+
                             </div>
                         </div>
                         <div class="content">
                             Alina's passion for brewing is matched only by her dedication
-                            to the art of crafting the perfect beer. Her brewery is known for its inventive and delicious
+                            to the art of crafting the perfect beer. Her brewery is known for its inventive and
+                            delicious
                             flavors,
                             and her loyal customers can't get enough of her unique brews.
                             <a href="#">#brewforlife</a> <a href="#">#beerisbest</a>
@@ -144,8 +149,8 @@
                         <div class="media">
                             <div class="media-content">
                                 <p class="title is-4 gaboFont">Marc the Beard Model</p>
-                                <p class="subtitle is-6">@runwaymarc</p>
-                                <a><i class="fab fa-github"></i></a>
+                                <p class="subtitle is-6">@runwaymarc <a><i class="fab fa-github"></i></a></p>
+
                             </div>
                         </div>
                         <div class="content">

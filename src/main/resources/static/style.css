@@ -153,9 +153,9 @@ nav {
 }
 
 .posts, comments {
-    margin: 10px;
-    padding: 10px;
-    border-radius: 11px;
+    margin: 5%;
+    padding: 5%;
+    border-radius: 20px;
 }
 
 a{
@@ -210,7 +210,13 @@ a{
     margin-bottom: 10px;
 }
 
-
+.postcon {
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+    background-color: rgba(255,255,255,0.5);
+    box-shadow: 0 1px 12px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.5);
+}
 
 
 
