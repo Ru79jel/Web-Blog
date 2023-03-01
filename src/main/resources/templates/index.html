@@ -94,7 +94,7 @@
         <div class="column is-6">
             <form class="box color2 posts" th:action="@{/}" th:object="${newpost}" method="post"
                   th:if="${sessionUser != null} and ${sessionUser.admin}">
-                <div>
+                <div >
                     <label class="label">Title</label>
                     <input class="input color1" type="text" th:field="*{title}" placeholder="Text input"/>
                     <label class="label">Message</label>
@@ -130,11 +130,12 @@
     </div>
 </div>
 </div>
-<section class="newsletter color3 columns">
+
+<section class="newsletter postcon color3 columns">
 
     <div class="column n1">
         <div>
-            <p class="title textcolor">Newsletter</p>
+            <p class="title textcolor gaboFont">Newsletter</p>
             <p class="subtitle textcolor">Stay updated and follow the latest trends
                 <i class="fa-solid fa-paper-plane"></i></p>
         </div>
